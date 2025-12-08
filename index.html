@@ -698,14 +698,65 @@
     </div>
 
     <script>
+        // Apps Script URL
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPbGzulW7AdCGapKA50kxt9Baupkju4S2SOEaGCPN2jrIy65qs3JCXowOKHjOCz5CJ/exec";
+        
+        // Google Sheets Config
         const GOOGLE_SHEET_ID = "12wEvIdAK-PmzZLHx21LUTU2Nu9SUFiOSXy4FBElRqIo";
         const GOOGLE_API_KEY = "AIzaSyBgumBHaWS04TNGS7STW71MFeSLggpj7S0";
         const SHEET_NAME = "keys";
         
+        // Global variables
         let preloadedAccounts = [];
         let shortlinkUrl = "https://bbckeygen.onrender.com/";
         let loginPageUrl = "https://anantemoteweb.lovable.app/";
         
+        // Apps Script से verify करने का function
+        async function verifyKeyWithAppScript(key) {
+            try {
+                const response = await fetch(`${APPS_SCRIPT_URL}?action=verifyKey&key=${encodeURIComponent(key)}&password=BULL2025`);
+                
+                if (!response.ok) {
+                    return {
+                        success: false,
+                        error: 'Server connection failed'
+                    };
+                }
+                
+                const data = await response.json();
+                console.log('Apps Script Response:', data);
+                return data;
+            } catch (error) {
+                console.error('Apps Script Error:', error);
+                return {
+                    success: false,
+                    error: 'Verification failed. Please try again.'
+                };
+            }
+        }
+        
+        // Apps Script में key को mark as used करने का function
+        async function markKeyAsUsedInSheet(key, username, password) {
+            try {
+                console.log('Marking key as used:', key);
+                
+                const response = await fetch(`${APPS_SCRIPT_URL}?action=markUsed&key=${encodeURIComponent(key)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&adminPass=BULL2025`);
+                
+                if (!response.ok) {
+                    console.error('Failed to mark key as used');
+                    return false;
+                }
+                
+                const data = await response.json();
+                console.log('Mark used response:', data);
+                return data.success === true;
+            } catch (error) {
+                console.error('Error marking key as used:', error);
+                return false;
+            }
+        }
+        
+        // Initialize function
         async function init() {
             const savedAccounts = localStorage.getItem('bbc_preloaded_accounts');
             const savedShortlink = localStorage.getItem('bbc_shortlink_url');
@@ -725,6 +776,7 @@
             startLiveStats();
         }
         
+        // Timer update function
         function updateTimer() {
             const now = Date.now();
             const tomorrow = new Date();
@@ -740,6 +792,7 @@
                 `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
         
+        // Check Google Sheets connection
         async function checkSheetConnection() {
             const statusElement = document.getElementById('sheetStatus');
             
@@ -774,6 +827,7 @@
             }
         }
         
+        // Load user stats from Google Sheets
         async function loadUserStats() {
             try {
                 const range = `${SHEET_NAME}!A:D`;
@@ -802,11 +856,13 @@
             }
         }
         
+        // Start live stats
         function startLiveStats() {
             setInterval(updateLiveStats, 30000);
             updateLiveStats();
         }
         
+        // Update live stats
         function updateLiveStats() {
             const now = new Date();
             const currentHour = now.getHours();
@@ -814,26 +870,19 @@
             document.getElementById('totalUsers').textContent = '4.0K';
             
             let activeToday = 600;
-            
-            if (currentHour >= 6 && currentHour < 12) {
-                activeToday = 600 + Math.floor(Math.random() * 300);
-            } else if (currentHour >= 12 && currentHour < 18) {
-                activeToday = 900 + Math.floor(Math.random() * 500);
-            } else if (currentHour >= 18 && currentHour < 22) {
-                activeToday = 1400 + Math.floor(Math.random() * 500);
-            } else {
-                activeToday = 120 + Math.floor(Math.random() * 80);
-            }
-            
             let onlineNow = 250;
             
             if (currentHour >= 6 && currentHour < 12) {
+                activeToday = 600 + Math.floor(Math.random() * 300);
                 onlineNow = 400 + Math.floor(Math.random() * 200);
             } else if (currentHour >= 12 && currentHour < 18) {
+                activeToday = 900 + Math.floor(Math.random() * 500);
                 onlineNow = 500 + Math.floor(Math.random() * 200);
             } else if (currentHour >= 18 && currentHour < 22) {
+                activeToday = 1400 + Math.floor(Math.random() * 500);
                 onlineNow = 600 + Math.floor(Math.random() * 100);
             } else {
+                activeToday = 120 + Math.floor(Math.random() * 80);
                 onlineNow = 120 + Math.floor(Math.random() * 80);
             }
             
@@ -854,6 +903,7 @@
             animateCounter('onlineNow', formatNumber(onlineNow));
         }
         
+        // Animate counter
         function animateCounter(elementId, newValue) {
             const element = document.getElementById(elementId);
             if (element.textContent !== newValue) {
@@ -865,6 +915,7 @@
             }
         }
         
+        // Show message
         function showMessage(text, type) {
             const msg = document.getElementById('message');
             msg.textContent = text;
@@ -876,6 +927,7 @@
             }, 3000);
         }
         
+        // Start password process
         function startPasswordProcess() {
             const modal = document.getElementById('generatingModal');
             const countdown = document.getElementById('countdown');
@@ -895,6 +947,7 @@
             }, 1000);
         }
         
+        // MAIN VERIFICATION FUNCTION - UPDATED WITH APP SCRIPT
         async function verifyAndGenerate() {
             const enteredKey = document.getElementById('enterKey').value.trim().toUpperCase();
             
@@ -911,79 +964,81 @@
             const statusDiv = document.getElementById('verificationStatus');
             const statusText = document.getElementById('statusText');
             statusDiv.style.display = 'block';
-            statusText.textContent = 'Checking key in database...';
+            statusText.textContent = '🔐 Checking key in database...';
             statusText.style.color = '#ffd700';
             
             try {
-                const range = `${SHEET_NAME}!A:Z`;
-                const url = `https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEET_ID}/values/${range}?key=${GOOGLE_API_KEY}`;
+                // STEP 1: Verify with Apps Script
+                statusText.textContent = '📡 Connecting to verification server...';
                 
-                const response = await fetch(url);
-                const data = await response.json();
+                const scriptResult = await verifyKeyWithAppScript(enteredKey);
                 
-                if (!data.values) {
-                    throw new Error('No data found in sheet');
+                if (!scriptResult.success) {
+                    statusText.textContent = `❌ ${scriptResult.error || 'Key verification failed'}`;
+                    statusText.style.color = '#ff4444';
+                    
+                    setTimeout(() => {
+                        statusDiv.style.display = 'none';
+                        showMessage(scriptResult.error || 'Key verification failed', 'error');
+                    }, 2000);
+                    return;
                 }
                 
-                let keyFound = false;
-                let keyRow = -1;
-                let keyStatus = '';
-                let username = '';
-                let password = '';
+                // Key verified successfully
+                statusText.textContent = '✅ Key verified successfully!';
+                statusText.style.color = '#4CAF50';
                 
-                for (let i = 0; i < data.values.length; i++) {
-                    const row = data.values[i];
-                    if (row[0] && row[0].trim().toUpperCase() === enteredKey) {
-                        keyFound = true;
-                        keyRow = i;
-                        keyStatus = row[1] ? row[1].trim().toLowerCase() : '';
-                        username = row[2] ? row[2].trim() : '';
-                        password = row[3] ? row[3].trim() : '';
-                        break;
+                // STEP 2: Get username and password
+                let username = "";
+                let password = "";
+                
+                // Try to get from Google Sheets
+                try {
+                    const range = `keys!A:D`;
+                    const url = `https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEET_ID}/values/${range}?key=${GOOGLE_API_KEY}`;
+                    
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    
+                    if (data.values) {
+                        for (let i = 0; i < data.values.length; i++) {
+                            const row = data.values[i];
+                            if (row[0] && row[0].trim().toUpperCase() === enteredKey) {
+                                username = row[2] ? row[2].trim() : "";
+                                password = row[3] ? row[3].trim() : "";
+                                break;
+                            }
+                        }
                     }
+                } catch (sheetError) {
+                    console.log('Using fallback accounts from sheet');
                 }
                 
-                if (!keyFound) {
-                    statusText.textContent = '✗ Key not found in database';
-                    statusText.style.color = '#ff4444';
-                    
-                    setTimeout(() => {
-                        statusDiv.style.display = 'none';
-                        showMessage('Invalid key! Not found in database.', 'error');
-                    }, 2000);
-                    return;
-                }
-                
-                if (keyStatus === 'used') {
-                    statusText.textContent = '✗ Key has already been used';
-                    statusText.style.color = '#ff4444';
-                    
-                    setTimeout(() => {
-                        statusDiv.style.display = 'none';
-                        showMessage('This key has already been used!', 'error');
-                    }, 2000);
-                    return;
-                }
-                
+                // If no username/password from sheet, use preloaded or default
                 if (!username || !password) {
-                    statusText.textContent = '✓ Key verified! Getting account from preloaded...';
-                    statusText.style.color = '#4CAF50';
-                    
                     if (preloadedAccounts.length > 0) {
                         const account = preloadedAccounts.shift();
                         username = account.username;
                         password = account.password;
-                        
                         localStorage.setItem('bbc_preloaded_accounts', JSON.stringify(preloadedAccounts));
                     } else {
                         username = "Anant";
                         password = "Anant";
                     }
-                } else {
-                    statusText.textContent = '✓ Key verified! Account found in sheet...';
-                    statusText.style.color = '#4CAF50';
                 }
                 
+                // STEP 3: Mark key as used in Google Sheets via Apps Script
+                statusText.textContent = '📝 Marking key as used...';
+                
+                const marked = await markKeyAsUsedInSheet(enteredKey, username, password);
+                
+                if (marked) {
+                    statusText.textContent = '✅ Key marked as used in database!';
+                } else {
+                    statusText.textContent = '⚠️ Key verified but could not mark as used';
+                }
+                
+                // STEP 4: Save and show account
                 sessionStorage.setItem('bbc_username', username);
                 sessionStorage.setItem('bbc_password', password);
                 
@@ -991,22 +1046,26 @@
                     showAccountCreated(username, password);
                     statusDiv.style.display = 'none';
                     showMessage('✅ Account created successfully!', 'success');
+                    
+                    // Update stats
                     updateAdminDisplay();
                     updateLiveStats();
+                    loadUserStats(); // Refresh sheet stats
                 }, 1500);
                 
             } catch (error) {
                 console.error('Verification error:', error);
-                statusText.textContent = '✗ Database connection error';
-                statusText.style.color = '#ff4444';
+                statusText.textContent = '⚠️ Verification error';
+                statusText.style.color = '#ff9800';
                 
                 setTimeout(() => {
                     statusDiv.style.display = 'none';
-                    showMessage('Database error. Please try again.', 'error');
+                    showMessage('Verification system error. Please try again.', 'warning');
                 }, 2000);
             }
         }
         
+        // Show account created section
         function showAccountCreated(username, password) {
             document.getElementById('generatedUsername').textContent = username;
             document.getElementById('generatedPassword').textContent = password;
@@ -1018,6 +1077,7 @@
             document.getElementById('enterKey').value = '';
         }
         
+        // Copy text function
         function copyText(elementId) {
             const text = document.getElementById(elementId).textContent;
             navigator.clipboard.writeText(text)
@@ -1033,10 +1093,12 @@
                 });
         }
         
+        // Redirect to login page
         function redirectToLoginPage() {
             window.location.href = loginPageUrl;
         }
         
+        // Show admin panel
         function showAdminPanel() {
             const password = prompt('Enter admin password:');
             if (password === 'admin123') {
@@ -1050,6 +1112,7 @@
             }
         }
         
+        // Switch tabs
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
@@ -1063,11 +1126,13 @@
             event.target.classList.add('active');
         }
         
+        // Update admin display
         function updateAdminDisplay() {
             document.getElementById('preloadedCount').textContent = preloadedAccounts.length;
             document.getElementById('availableAccountsCount').textContent = preloadedAccounts.length;
         }
         
+        // Upload accounts
         function uploadAccounts() {
             const accountsText = document.getElementById('bulkAccountsInput').value.trim();
             
@@ -1121,6 +1186,7 @@
             }
         }
         
+        // Initialize on load
         window.onload = init;
     </script>
 </body>
