@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Big Bull Cheats - Login</title>
+    <title>BIGBULL CHEATS - Key Verification & Emote Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ========== GLOBAL STYLES ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            background: #000000;
             color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* ========== LOGIN PAGE STYLES ========== */
+        .login-container {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -23,9 +35,15 @@
             padding: 20px;
         }
         
-        .container {
+        .login-box {
             width: 100%;
             max-width: 500px;
+            background: rgba(25, 25, 35, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            backdrop-filter: blur(10px);
         }
         
         .logo {
@@ -89,15 +107,6 @@
             color: #ff8c00;
             font-size: 0.9rem;
             margin-top: 10px;
-        }
-        
-        .login-card {
-            background: rgba(25, 25, 35, 0.9);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid #333;
-            backdrop-filter: blur(10px);
         }
         
         .login-header {
@@ -173,190 +182,23 @@
             transform: translateY(-2px);
         }
         
-        .btn-login {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-        }
-        
-        .btn-login:hover {
-            background: linear-gradient(135deg, #45a049 0%, #4CAF50 100%);
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-            transform: translateY(-2px);
-        }
-        
-        .account-created-section {
-            background: rgba(40, 40, 50, 0.7);
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-            display: none;
-        }
-        
-        .account-created-section h3 {
-            color: #4CAF50;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-        
-        .credentials-box {
-            background: rgba(30, 30, 40, 0.7);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-        }
-        
-        .credential-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .message-box {
+            padding: 10px;
+            border-radius: 5px;
             margin: 10px 0;
-            padding: 10px;
-            background: rgba(20, 20, 30, 0.7);
-            border-radius: 5px;
-        }
-        
-        .cred-label {
-            color: #ffd700;
-            font-weight: bold;
-        }
-        
-        .cred-value {
-            color: white;
-            font-family: monospace;
-            font-size: 1.1rem;
-        }
-        
-        .copy-btn {
-            background: #333;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .admin-section {
-            margin-top: 25px;
-            padding: 20px;
-            background: rgba(40, 40, 50, 0.5);
-            border-radius: 10px;
-            border: 1px solid #444;
             display: none;
         }
         
-        .admin-section h3 {
-            color: #ffd700;
-            margin-bottom: 15px;
-            text-align: center;
+        .message-success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
         }
         
-        .admin-tabs {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 10px;
-        }
-        
-        .tab-btn {
-            flex: 1;
-            padding: 8px;
-            background: #333;
-            color: #aaa;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        
-        .tab-btn.active {
-            background: #ffd700;
-            color: #000;
-            font-weight: bold;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .admin-input {
-            margin-bottom: 15px;
-        }
-        
-        .admin-input label {
-            display: block;
-            margin-bottom: 5px;
-            color: #ccc;
-            font-size: 0.9rem;
-        }
-        
-        .admin-input input, .admin-input textarea {
-            width: 100%;
-            padding: 10px;
-            background: rgba(30, 30, 40, 0.7);
-            border: 1px solid #555;
-            border-radius: 5px;
-            color: #fff;
-        }
-        
-        .admin-input textarea {
-            min-height: 100px;
-            resize: vertical;
-            font-family: monospace;
-        }
-        
-        .btn-admin {
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        .btn-admin-green {
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        .security-notice {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 8px;
-            border-left: 4px solid #ffd700;
-            font-size: 0.85rem;
-            text-align: center;
-        }
-        
-        .security-notice i {
-            color: #ffd700;
-            margin-right: 5px;
+        .message-error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid #f44336;
+            color: #f44336;
         }
         
         .user-stats {
@@ -381,7 +223,18 @@
             color: #aaa;
         }
         
-        .generating-modal {
+        .security-notice {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid #ffd700;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        /* ========== MODAL STYLES ========== */
+        .modal {
             display: none;
             position: fixed;
             top: 0;
@@ -394,7 +247,7 @@
             align-items: center;
         }
         
-        .generating-content {
+        .modal-content {
             background: rgba(25, 25, 35, 0.95);
             padding: 40px;
             border-radius: 15px;
@@ -405,13 +258,18 @@
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
         
-        .generating-content h3 {
+        .success-modal-content {
+            border: 2px solid #4CAF50;
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.3);
+        }
+        
+        .modal-content h3 {
             color: #ffd700;
             margin-bottom: 20px;
             font-size: 1.5rem;
         }
         
-        .generating-text {
+        .modal-text {
             color: #ff8c00;
             font-size: 1.1rem;
             margin: 25px 0;
@@ -434,84 +292,580 @@
             margin: 0 auto;
         }
         
+        .success-icon {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite alternate;
+        }
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
         
-        .admin-toggle-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            z-index: 100;
-        }
-        
-        .message-box {
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            display: none;
-        }
-        
-        .message-success {
-            background: rgba(76, 175, 80, 0.2);
-            border: 1px solid #4CAF50;
-            color: #4CAF50;
-        }
-        
-        .message-error {
-            background: rgba(244, 67, 54, 0.2);
-            border: 1px solid #f44336;
-            color: #f44336;
-        }
-        
-        .admin-info {
-            background: rgba(40, 40, 50, 0.7);
-            border-radius: 5px;
-            padding: 10px;
-            margin-top: 10px;
-            font-size: 0.9rem;
+        @keyframes bounce {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-10px); }
         }
         
         .verification-status {
             display: none;
             text-align: center;
-            margin: 10px 0;
+            margin: 15px 0;
             padding: 10px;
             border-radius: 5px;
             background: rgba(40, 40, 50, 0.7);
         }
         
-        .sheet-status {
-            background: rgba(40, 40, 50, 0.7);
-            border-radius: 8px;
-            padding: 12px;
-            margin: 15px 0;
-            text-align: center;
-            font-size: 0.85rem;
-            border: 1px solid #444;
+        /* ========== DASHBOARD STYLES ========== */
+        .dashboard {
             display: none;
         }
         
-        .sheet-connected {
-            border-color: #4CAF50;
-            color: #4CAF50;
+        /* FIXED HEADER - Compact Design */
+        .header {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            padding: 10px 20px; /* Reduced padding */
+            text-align: center;
+            border-bottom: 3px solid #FFD700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            height: auto; /* Auto height */
+            min-height: 60px; /* Minimum height */
         }
         
-        .sheet-disconnected {
-            border-color: #ff4444;
-            color: #ff4444;
+        .dashboard-logo {
+            font-size: 2rem; /* Smaller font */
+            font-weight: 900;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            line-height: 1.2;
         }
         
-        @media (max-width: 480px) {
-            .login-card {
+        .subtitle {
+            color: #FFD700;
+            font-size: 0.9rem; /* Smaller */
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+        
+        .user-info {
+            font-size: 0.8rem; /* Smaller */
+            color: #00FF00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 3px;
+        }
+        
+        .user-info i {
+            color: #FFD700;
+            font-size: 0.8rem;
+        }
+        
+        .logout-btn {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid #FF0000;
+            color: #FF0000;
+            padding: 2px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 0, 0, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .system-status {
+            background: rgba(0, 255, 0, 0.15);
+            border: 2px solid #00FF00;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #00FF00;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        .system-status i {
+            font-size: 0.8rem;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 0, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(0, 255, 0, 0.8); }
+        }
+        
+        /* Main Container - Adjusted for smaller header */
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 15px;
+            margin-top: 120px; /* Reduced space for header */
+        }
+        
+        /* Input Section */
+        .input-section {
+            background: rgba(26, 26, 26, 0.9);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+        
+        .input-row {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .input-group {
+            width: 100%;
+        }
+        
+        .input-label {
+            display: block;
+            color: #FFD700;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            background: #000;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            color: #FFD700;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #FFA500;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .input-field::placeholder {
+            color: #888;
+        }
+        
+        /* UID Fields */
+        .uid-inputs {
+            margin-top: 12px;
+        }
+        
+        .uid-input-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .uid-label {
+            min-width: 50px;
+            color: #FFD700;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 6px;
+            padding: 0 8px;
+            border: 1px solid #FFD700;
+            font-size: 0.8rem;
+        }
+        
+        .uid-input {
+            flex: 1;
+            padding: 8px;
+            background: #000;
+            border: 2px solid #FFD700;
+            border-radius: 6px;
+            color: #FFD700;
+            font-size: 0.8rem;
+        }
+        
+        .uid-input::placeholder {
+            color: #666;
+        }
+        
+        /* Status Bar */
+        .status-bar {
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid #00FF00;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 12px;
+            text-align: center;
+            color: #00FF00;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-bar i {
+            margin-right: 6px;
+            font-size: 0.8rem;
+        }
+        
+        /* Click Instruction */
+        .click-instruction {
+            text-align: center;
+            color: #FFD700;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin: 8px 0 15px 0;
+            padding: 8px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 6px;
+            border: 1px solid #FFD700;
+        }
+        
+        /* Emotes Grid - 3 PER ROW */
+        .emotes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .emote-btn {
+            background: rgba(34, 34, 34, 0.8);
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            min-height: 100px;
+        }
+        
+        .emote-btn:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: #FFA500;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .emote-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .emote-img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .emote-btn:hover .emote-img {
+            transform: scale(1.1);
+        }
+        
+        /* Load More Button */
+        .load-more-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(45deg, #FFD700, #FF8C00);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .load-more-btn:hover {
+            background: linear-gradient(45deg, #FF8C00, #FFD700);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .load-more-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Popup */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .popup-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .popup {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 350px;
+            width: 100%;
+            border: 2px solid #FFD700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            text-align: center;
+            animation: slideUp 0.3s;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .popup-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        
+        .popup-icon.processing {
+            color: #FFD700;
+        }
+        
+        .popup-icon.success {
+            color: #00FF00;
+            animation: successPulse 1s;
+        }
+        
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .popup-icon.error {
+            color: #FF0000;
+        }
+        
+        .popup-title {
+            color: #FFD700;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .popup-message {
+            color: #FFF;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            padding: 0 8px;
+        }
+        
+        .popup-close-btn {
+            background: linear-gradient(45deg, #FFD700, #FF8C00);
+            color: #000;
+            border: none;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        
+        .popup-close-btn:hover {
+            background: linear-gradient(45deg, #FF8C00, #FFD700);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Progress Bar */
+        .progress-bar-container {
+            margin: 12px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            height: 16px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FF8C00);
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 8px;
+        }
+        
+        .progress-text {
+            color: #FFD700;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            text-align: center;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: #888;
+            font-size: 0.75rem;
+            border-top: 1px solid #333;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .footer p {
+            margin: 4px 0;
+        }
+        
+        .footer-highlight {
+            color: #FFD700;
+            font-weight: bold;
+            margin-top: 6px;
+            font-size: 0.8rem;
+        }
+        
+        /* Loading Animation */
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots span {
+            animation: blink 1.4s infinite;
+            animation-fill-mode: both;
+            font-size: 1rem;
+            color: #FFD700;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #FFD700;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFA500;
+        }
+        
+        /* Access Time Info */
+        .access-time {
+            margin-top: 3px;
+            font-size: 0.7rem;
+            color: #888;
+        }
+        
+        .session-expiry {
+            margin-top: 3px;
+            font-size: 0.65rem;
+            color: #FFA500;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 12px;
+                margin-top: 110px;
+            }
+            
+            .dashboard-logo {
+                font-size: 1.8rem;
+            }
+            
+            .emotes-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+            
+            .emote-img {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .emote-btn {
+                min-height: 90px;
+                padding: 6px;
+            }
+            
+            .input-field, .uid-input {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+            
+            .header {
+                padding: 8px 15px;
+            }
+            
+            .uid-label {
+                min-width: 45px;
+                font-size: 0.75rem;
+                padding: 0 6px;
+            }
+            
+            .login-box {
                 padding: 20px;
             }
             
@@ -519,46 +873,105 @@
                 font-size: 2rem;
             }
             
-            .admin-tabs {
-                flex-direction: column;
+            .modal-content {
+                padding: 20px;
             }
             
-            .generating-content {
-                padding: 25px;
+            .status-bar {
+                padding: 8px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .emotes-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+            }
+            
+            .dashboard-logo {
+                font-size: 1.6rem;
+            }
+            
+            .container {
+                margin-top: 100px;
+            }
+            
+            .uid-input {
+                font-size: 0.75rem;
+                padding: 6px;
+            }
+            
+            .emote-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .emote-btn {
+                min-height: 80px;
+                padding: 5px;
+            }
+            
+            .subtitle {
+                font-size: 0.8rem;
+            }
+            
+            .user-info {
+                font-size: 0.7rem;
+                gap: 5px;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .emotes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .emote-img {
+                width: 65px;
+                height: 65px;
+            }
+            
+            .uid-input-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+            
+            .uid-label {
+                justify-content: flex-start;
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .dashboard-logo {
+                font-size: 1.4rem;
             }
         }
     </style>
 </head>
 <body>
-    <button class="admin-toggle-btn" onclick="showAdminPanel()">
-        <i class="fas fa-tools"></i> ADMIN
-    </button>
-    
-    <div class="container">
-        <div class="logo">
-            <h1>THE BIG BULL</h1>
-            <p>Premium Cheats & Tools</p>
-        </div>
-        
-        <div class="sheet-status" id="sheetStatus">
-            <i class="fas fa-spinner fa-spin"></i> Connecting to database...
-        </div>
-        
-        <div class="password-info" id="keySection">
-            <h3><i class="fas fa-key"></i> GET YOUR KEY</h3>
-            <button class="get-password-btn" onclick="startPasswordProcess()">
-                <i class="fas fa-key"></i> Click here to get your key
-            </button>
-            <div class="password-timer">
-                <i class="fas fa-clock"></i> 
-                Key changes in: <span id="passwordTimer">24:00:00</span>
+    <!-- ========== LOGIN PAGE ========== -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <h1>THE BIG BULL</h1>
+                <p>Premium Cheats & Tools</p>
             </div>
-        </div>
-        
-        <div class="login-card">
+            
+            <div class="password-info" id="keySection">
+                <h3><i class="fas fa-key"></i> GET YOUR KEY</h3>
+                <button class="get-password-btn" onclick="startPasswordProcess()">
+                    <i class="fas fa-key"></i> Click here to get your key
+                </button>
+                <div class="password-timer">
+                    <i class="fas fa-clock"></i> 
+                    Key changes in: <span id="passwordTimer">24:00:00</span>
+                </div>
+            </div>
+            
             <div class="login-header">
-                <h2>Access Premium Cheats</h2>
-                <p>Enter your key to generate BBC credentials</p>
+                <h2>Access Premium Dashboard</h2>
+                <p>Enter your key to access emote dashboard</p>
             </div>
             
             <div id="keyEntrySection">
@@ -569,7 +982,7 @@
                 </div>
                 
                 <button class="generate-btn" onclick="verifyAndGenerate()">
-                    <i class="fas fa-magic"></i> VERIFY KEY & GENERATE
+                    <i class="fas fa-magic"></i> VERIFY KEY & ACCESS DASHBOARD
                 </button>
                 
                 <div id="message" class="message-box"></div>
@@ -577,35 +990,6 @@
                 <div class="verification-status" id="verificationStatus">
                     <i class="fas fa-spinner fa-spin"></i> <span id="statusText">Checking key in database...</span>
                 </div>
-            </div>
-            
-            <div class="account-created-section" id="accountCreatedSection">
-                <h3><i class="fas fa-check-circle"></i> ACCOUNT CREATED</h3>
-                
-                <div class="credentials-box">
-                    <div class="credential-item">
-                        <span class="cred-label">Username:</span>
-                        <span class="cred-value" id="generatedUsername">Anant</span>
-                        <button class="copy-btn" onclick="copyText('generatedUsername')">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <div class="credential-item">
-                        <span class="cred-label">Password:</span>
-                        <span class="cred-value" id="generatedPassword">Anant</span>
-                        <button class="copy-btn" onclick="copyText('generatedPassword')">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <p style="color: #aaa; margin: 15px 0; font-size: 0.9rem;">
-                    <i class="fas fa-info-circle"></i> Save these credentials for future login
-                </p>
-                
-                <button class="btn-login" onclick="redirectToLoginPage()">
-                    <i class="fas fa-sign-in-alt"></i> GO TO LOGIN PAGE
-                </button>
             </div>
             
             <div class="user-stats">
@@ -623,71 +1007,150 @@
                 </div>
             </div>
             
-            <div class="admin-section" id="adminPanel">
-                <h3><i class="fas fa-tools"></i> ADMIN PANEL</h3>
-                
-                <div class="admin-tabs">
-                    <button class="tab-btn active" onclick="switchTab('accounts-tab')">👥 UPLOAD ACCOUNTS</button>
-                    <button class="tab-btn" onclick="switchTab('stats-tab')">📊 STATS</button>
-                </div>
-                
-                <div class="tab-content active" id="accounts-tab">
-                    <div class="admin-input">
-                        <label>Paste Username:Password (one per line):</label>
-                        <textarea id="bulkAccountsInput" placeholder="BBC.ALPHA001:bull001&#10;BBC.BRAVO002:bull002&#10;BBC.CHARLIE003:bull003&#10;..."></textarea>
-                    </div>
-                    
-                    <div class="admin-info">
-                        <i class="fas fa-info-circle"></i> 
-                        Format: username:password<br>
-                        Example: BBC.ALPHA001:bull001<br>
-                        <strong>If no accounts uploaded, default will be:</strong><br>
-                        Username: <strong>Anant</strong><br>
-                        Password: <strong>Anant</strong>
-                    </div>
-                    
-                    <button class="btn-admin-green" onclick="uploadAccounts()">
-                        <i class="fas fa-user-plus"></i> UPLOAD ACCOUNTS
-                    </button>
-                    
-                    <div class="admin-info" style="margin-top: 15px;">
-                        <i class="fas fa-database"></i> 
-                        Uploaded Accounts: <span id="preloadedCount">0</span><br>
-                        <strong>Default: Anant / Anant</strong>
-                    </div>
-                </div>
-                
-                <div class="tab-content" id="stats-tab">
-                    <div class="admin-info">
-                        <div style="display: flex; justify-content: space-between;">
-                            <div>
-                                <i class="fas fa-key"></i> Keys in Sheet: <span id="sheetKeysCount">0</span>
-                            </div>
-                            <div>
-                                <i class="fas fa-users"></i> Used Keys: <span id="usedKeysCount">0</span>
-                            </div>
-                        </div>
-                        <div style="margin-top: 10px;">
-                            <i class="fas fa-user-check"></i> Available Accounts: <span id="availableAccountsCount">0</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
             <div class="security-notice">
                 <i class="fas fa-shield-alt"></i>
-                BBC Keys System • Google Sheets Verification • Secure Credentials Generation
+                BBC Keys System • Google Sheets Verification • Secure Dashboard Access
             </div>
         </div>
     </div>
 
-    <div class="generating-modal" id="generatingModal">
-        <div class="generating-content">
+    <!-- ========== DASHBOARD PAGE ========== -->
+    <div id="dashboardPage" class="dashboard">
+        <!-- Header - FIXED AND COMPACT -->
+        <div class="header" id="mainHeader">
+            <h1 class="dashboard-logo">BIGBULLCHEATS</h1>
+            <p class="subtitle">PREMIUM EMOTE DASHBOARD</p>
+            <div id="userInfoContainer" style="display: none;">
+                <div class="user-info">
+                    <i class="fas fa-user"></i>
+                    Welcome, <span id="usernameDisplay" style="color: #00FF00; font-weight: bold;"></span>
+                    <button onclick="logout()" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+                <div class="access-time" id="accessTime"></div>
+                <div class="session-expiry" id="sessionExpiry"></div>
+            </div>
+            <div class="system-status">
+                <i class="fas fa-wifi"></i> SYSTEM ACTIVE
+            </div>
+        </div>
+
+        <!-- Main Container -->
+        <div class="container">
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="input-label">TEAM CODE</label>
+                        <input type="text" 
+                               id="teamCode" 
+                               class="input-field" 
+                               placeholder="Enter Team Code"
+                               value="">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">PLAYER UIDs - ALL 3 TOGETHER</label>
+                        
+                        <!-- Always visible UID inputs -->
+                        <div class="uid-inputs">
+                            <div class="uid-input-row">
+                                <div class="uid-label">UID 1</div>
+                                <input type="text" 
+                                       id="playerUID1" 
+                                       class="uid-input" 
+                                       placeholder="Enter UID 1"
+                                       value="">
+                            </div>
+                            
+                            <div class="uid-input-row">
+                                <div class="uid-label">UID 2</div>
+                                <input type="text" 
+                                       id="playerUID2" 
+                                       class="uid-input" 
+                                       placeholder="Enter UID 2"
+                                       value="">
+                            </div>
+                            
+                            <div class="uid-input-row">
+                                <div class="uid-label">UID 3</div>
+                                <input type="text" 
+                                       id="playerUID3" 
+                                       class="uid-input" 
+                                       placeholder="Enter UID 3"
+                                       value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Status Bar -->
+                <div class="status-bar" id="statusIndicator">
+                    <i class="fas fa-check-circle"></i> SYSTEM READY - CLICK EMOTE TO PERFORM ON ALL 3 UIDs
+                </div>
+            </div>
+
+            <!-- Click Instruction -->
+            <div class="click-instruction">
+                CLICK EMOTE → ALL 3 UIDs + 1 EXTRA EMOTE WILL PERFORM TOGETHER
+            </div>
+
+            <!-- Emotes Grid -->
+            <div class="emotes-grid" id="emotesGrid">
+                <!-- Emotes will be loaded here -->
+            </div>
+
+            <!-- Load More Button -->
+            <button class="load-more-btn" id="loadMoreBtn" onclick="loadMoreEmotes()">
+                <i class="fas fa-arrow-down"></i> LOAD MORE EMOTES
+            </button>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>© 2025 BIGBULLCHEATS | PREMIUM ACCESS</p>
+                <p class="footer-highlight">
+                    <i class="fas fa-info-circle"></i> Click PNG → 4 Emotes (3 UIDs + 1 Extra) Auto Process
+                </p>
+                <p style="margin-top: 8px; font-size: 0.7rem;">
+                    All 3 UIDs will perform together in one request
+                </p>
+            </div>
+        </div>
+
+        <!-- Popup -->
+        <div class="popup-overlay" id="popupOverlay">
+            <div class="popup" id="popup">
+                <div class="popup-icon processing" id="popupIcon">
+                    <i class="fas fa-cog fa-spin"></i>
+                </div>
+                <div class="popup-title" id="popupTitle">Processing</div>
+                
+                <!-- Progress Bar -->
+                <div class="progress-bar-container" id="progressContainer" style="display: none;">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="progress-text" id="progressText" style="display: none;">0%</div>
+                
+                <div class="popup-message" id="popupMessage">
+                    Starting auto process for all 3 UIDs<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
+                </div>
+                <button class="popup-close-btn" onclick="closePopup()" id="closeBtn" style="display: none;">
+                    DONE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== MODALS ========== -->
+    <!-- Generating Key Modal -->
+    <div class="modal" id="generatingModal">
+        <div class="modal-content">
             <h3><i class="fas fa-cog"></i> GETTING KEY</h3>
             
             <div class="loading-spinner"></div>
             
-            <div class="generating-text">
+            <div class="modal-text">
                 Redirecting to get your key...
             </div>
             
@@ -697,86 +1160,567 @@
         </div>
     </div>
 
-    <script>
-        // Apps Script URL
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPbGzulW7AdCGapKA50kxt9Baupkju4S2SOEaGCPN2jrIy65qs3JCXowOKHjOCz5CJ/exec";
-        
-        // Google Sheets Config
-        const GOOGLE_SHEET_ID = "12wEvIdAK-PmzZLHx21LUTU2Nu9SUFiOSXy4FBElRqIo";
-        const GOOGLE_API_KEY = "AIzaSyBgumBHaWS04TNGS7STW71MFeSLggpj7S0";
-        const SHEET_NAME = "keys";
-        
-        // Global variables
-        let preloadedAccounts = [];
-        let shortlinkUrl = "https://bbckeygen.onrender.com/";
-        let loginPageUrl = "https://anantemoteweb.lovable.app/";
-        
-        // Apps Script से verify करने का function
-        async function verifyKeyWithAppScript(key) {
-            try {
-                const response = await fetch(`${APPS_SCRIPT_URL}?action=verifyKey&key=${encodeURIComponent(key)}&password=BULL2025`);
-                
-                if (!response.ok) {
-                    return {
-                        success: false,
-                        error: 'Server connection failed'
-                    };
-                }
-                
-                const data = await response.json();
-                console.log('Apps Script Response:', data);
-                return data;
-            } catch (error) {
-                console.error('Apps Script Error:', error);
-                return {
-                    success: false,
-                    error: 'Verification failed. Please try again.'
-                };
-            }
-        }
-        
-        // Apps Script में key को mark as used करने का function
-        async function markKeyAsUsedInSheet(key, username, password) {
-            try {
-                console.log('Marking key as used:', key);
-                
-                const response = await fetch(`${APPS_SCRIPT_URL}?action=markUsed&key=${encodeURIComponent(key)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&adminPass=BULL2025`);
-                
-                if (!response.ok) {
-                    console.error('Failed to mark key as used');
-                    return false;
-                }
-                
-                const data = await response.json();
-                console.log('Mark used response:', data);
-                return data.success === true;
-            } catch (error) {
-                console.error('Error marking key as used:', error);
-                return false;
-            }
-        }
-        
-        // Initialize function
-        async function init() {
-            const savedAccounts = localStorage.getItem('bbc_preloaded_accounts');
-            const savedShortlink = localStorage.getItem('bbc_shortlink_url');
-            const savedLoginUrl = localStorage.getItem('bbc_login_url');
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content success-modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
             
-            if (savedAccounts) preloadedAccounts = JSON.parse(savedAccounts);
-            if (savedShortlink) shortlinkUrl = savedShortlink;
-            if (savedLoginUrl) loginPageUrl = savedLoginUrl;
+            <h2 style="color: #4CAF50; font-size: 1.8rem; margin-bottom: 10px;">ACCESS GRANTED!</h2>
+            
+            <div style="color: #fff; margin: 15px 0; font-size: 1rem;">
+                <i class="fas fa-user-check"></i><br>
+                Key verified successfully!<br>
+                <small style="color: #aaa;">Opening emote dashboard...</small>
+            </div>
+            
+            <div class="countdown" id="successCountdown">
+                5
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== GLOBAL VARIABLES ==========
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPbGzulW7AdCGapKA50kxt9Baupkju4S2SOEaGCPN2jrIy65qs3JCXowOKHjOCz5CJ/exec";
+        const API_URL = 'https://raihan-api.onrender.com';
+        let shortlinkUrl = "https://bbckeygen.onrender.com/";
+        
+        // Dashboard variables
+        let allDanceEmotes = [];
+        let uids = { uid1: "", uid2: "", uid3: "" };
+        let currentBatch = 0;
+        const BATCH_SIZE = 100;
+        let loadedEmotes = [];
+        let totalEmotes = 0;
+        
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            init();
+        });
+        
+        async function init() {
+            // Check if user is already logged in
+            const verified = sessionStorage.getItem('bbc_key_verified');
+            const username = sessionStorage.getItem('bbc_username');
+            
+            if (verified === 'true' && username) {
+                // User is logged in - show dashboard
+                showDashboard();
+            } else {
+                // User is not logged in - show login
+                showLogin();
+            }
             
             updateTimer();
             setInterval(updateTimer, 1000);
             
-            await checkSheetConnection();
-            await loadUserStats();
-            updateAdminDisplay();
-            
             startLiveStats();
+            
+            // ========== COMPLETE EMOTE LIST (700+ Emotes) ==========
+            allDanceEmotes = [
+                // New emotes from your list
+                { id: "909042007", png: "https://shadow-emotelist.onrender.com/data/dance/909042007.png" },
+                { id: "909038010", png: "https://shadow-emotelist.onrender.com/data/evo/909038010.png" },
+                { id: "909033002", png: "https://shadow-emotelist.onrender.com/data/evo/909033002.png" },
+                { id: "909040010", png: "https://shadow-emotelist.onrender.com/data/evo/909040010.png" },
+                { id: "909049010", png: "https://shadow-emotelist.onrender.com/data/evo/909049010.png" },
+                { id: "909042008", png: "https://shadow-emotelist.onrender.com/data/evo/909042008.png" },
+                { id: "909038012", png: "https://shadow-emotelist.onrender.com/data/evo/909038012.png" },
+                { id: "909035007", png: "https://shadow-emotelist.onrender.com/data/evo/909035007.png" },
+                { id: "909000063", png: "https://shadow-emotelist.onrender.com/data/evo/909000063.png" },
+                { id: "909000085", png: "https://shadow-emotelist.onrender.com/data/evo/909000085.png" },
+                { id: "909040006", png: "https://shadow-emotelist.onrender.com/data/evo/909040006.png" },
+                { id: "909037011", png: "https://shadow-emotelist.onrender.com/data/evo/909037011.png" },
+                { id: "909039011", png: "https://shadow-emotelist.onrender.com/data/evo/909039011.png" },
+                { id: "909000081", png: "https://shadow-emotelist.onrender.com/data/evo/909000081.png" },
+                { id: "909000075", png: "https://shadow-emotelist.onrender.com/data/evo/909000075.png" },
+                
+                // Complete dance emotes list (700+ emotes)
+                { id: "909000001", png: "https://shadow-emotelist.onrender.com/data/dance/909000001.png" },
+                { id: "909000002", png: "https://shadow-emotelist.onrender.com/data/dance/909000002.png" },
+                { id: "909000003", png: "https://shadow-emotelist.onrender.com/data/dance/909000003.png" },
+                { id: "909000004", png: "https://shadow-emotelist.onrender.com/data/dance/909000004.png" },
+                { id: "909000005", png: "https://shadow-emotelist.onrender.com/data/dance/909000005.png" },
+                { id: "909000006", png: "https://shadow-emotelist.onrender.com/data/dance/909000006.png" },
+                { id: "909000007", png: "https://shadow-emotelist.onrender.com/data/dance/909000007.png" },
+                { id: "909000008", png: "https://shadow-emotelist.onrender.com/data/dance/909000008.png" },
+                { id: "909000009", png: "https://shadow-emotelist.onrender.com/data/dance/909000009.png" },
+                { id: "909000010", png: "https://shadow-emotelist.onrender.com/data/dance/909000010.png" },
+                { id: "909000011", png: "https://shadow-emotelist.onrender.com/data/dance/909000011.png" },
+                { id: "909000012", png: "https://shadow-emotelist.onrender.com/data/dance/909000012.png" },
+                { id: "909000013", png: "https://shadow-emotelist.onrender.com/data/dance/909000013.png" },
+                { id: "909000014", png: "https://shadow-emotelist.onrender.com/data/dance/909000014.png" },
+                { id: "909000015", png: "https://shadow-emotelist.onrender.com/data/dance/909000015.png" },
+                { id: "909000016", png: "https://shadow-emotelist.onrender.com/data/dance/909000016.png" },
+                { id: "909000017", png: "https://shadow-emotelist.onrender.com/data/dance/909000017.png" },
+                { id: "909000018", png: "https://shadow-emotelist.onrender.com/data/dance/909000018.png" },
+                { id: "909000019", png: "https://shadow-emotelist.onrender.com/data/dance/909000019.png" },
+                { id: "909000020", png: "https://shadow-emotelist.onrender.com/data/dance/909000020.png" },
+                { id: "909000021", png: "https://shadow-emotelist.onrender.com/data/dance/909000021.png" },
+                { id: "909000022", png: "https://shadow-emotelist.onrender.com/data/dance/909000022.png" },
+                { id: "909000023", png: "https://shadow-emotelist.onrender.com/data/dance/909000023.png" },
+                { id: "909000024", png: "https://shadow-emotelist.onrender.com/data/dance/909000024.png" },
+                { id: "909000025", png: "https://shadow-emotelist.onrender.com/data/dance/909000025.png" },
+                { id: "909000026", png: "https://shadow-emotelist.onrender.com/data/dance/909000026.png" },
+                { id: "909000027", png: "https://shadow-emotelist.onrender.com/data/dance/909000027.png" },
+                { id: "909000028", png: "https://shadow-emotelist.onrender.com/data/dance/909000028.png" },
+                { id: "909000029", png: "https://shadow-emotelist.onrender.com/data/dance/909000029.png" },
+                { id: "909000030", png: "https://shadow-emotelist.onrender.com/data/dance/909000030.png" },
+                { id: "909000031", png: "https://shadow-emotelist.onrender.com/data/dance/909000031.png" },
+                { id: "909000032", png: "https://shadow-emotelist.onrender.com/data/dance/909000032.png" },
+                { id: "909000033", png: "https://shadow-emotelist.onrender.com/data/dance/909000033.png" },
+                { id: "909000034", png: "https://shadow-emotelist.onrender.com/data/dance/909000034.png" },
+                { id: "909000035", png: "https://shadow-emotelist.onrender.com/data/dance/909000035.png" },
+                { id: "909000036", png: "https://shadow-emotelist.onrender.com/data/dance/909000036.png" },
+                { id: "909000037", png: "https://shadow-emotelist.onrender.com/data/dance/909000037.png" },
+                { id: "909000038", png: "https://shadow-emotelist.onrender.com/data/dance/909000038.png" },
+                { id: "909000039", png: "https://shadow-emotelist.onrender.com/data/dance/909000039.png" },
+                { id: "909000040", png: "https://shadow-emotelist.onrender.com/data/dance/909000040.png" },
+                { id: "909000041", png: "https://shadow-emotelist.onrender.com/data/dance/909000041.png" },
+                { id: "909000042", png: "https://shadow-emotelist.onrender.com/data/dance/909000042.png" },
+                { id: "909000043", png: "https://shadow-emotelist.onrender.com/data/dance/909000043.png" },
+                { id: "909000044", png: "https://shadow-emotelist.onrender.com/data/dance/909000044.png" },
+                { id: "909000045", png: "https://shadow-emotelist.onrender.com/data/dance/909000045.png" },
+                { id: "909000046", png: "https://shadow-emotelist.onrender.com/data/dance/909000046.png" },
+                { id: "909000047", png: "https://shadow-emotelist.onrender.com/data/dance/909000047.png" },
+                { id: "909000048", png: "https://shadow-emotelist.onrender.com/data/dance/909000048.png" },
+                { id: "909000049", png: "https://shadow-emotelist.onrender.com/data/dance/909000049.png" },
+                { id: "909000050", png: "https://shadow-emotelist.onrender.com/data/dance/909000050.png" },
+                { id: "909000051", png: "https://shadow-emotelist.onrender.com/data/dance/909000051.png" },
+                { id: "909000052", png: "https://shadow-emotelist.onrender.com/data/dance/909000052.png" },
+                { id: "909000053", png: "https://shadow-emotelist.onrender.com/data/dance/909000053.png" },
+                { id: "909000054", png: "https://shadow-emotelist.onrender.com/data/dance/909000054.png" },
+                { id: "909000055", png: "https://shadow-emotelist.onrender.com/data/dance/909000055.png" },
+                { id: "909000056", png: "https://shadow-emotelist.onrender.com/data/dance/909000056.png" },
+                { id: "909000057", png: "https://shadow-emotelist.onrender.com/data/dance/909000057.png" },
+                { id: "909000058", png: "https://shadow-emotelist.onrender.com/data/dance/909000058.png" },
+                { id: "909000059", png: "https://shadow-emotelist.onrender.com/data/dance/909000059.png" },
+                { id: "909000060", png: "https://shadow-emotelist.onrender.com/data/dance/909000060.png" },
+                { id: "909000061", png: "https://shadow-emotelist.onrender.com/data/dance/909000061.png" },
+                { id: "909000062", png: "https://shadow-emotelist.onrender.com/data/dance/909000062.png" },
+                { id: "909000063", png: "https://shadow-emotelist.onrender.com/data/dance/909000063.png" },
+                { id: "909000064", png: "https://shadow-emotelist.onrender.com/data/dance/909000064.png" },
+                { id: "909000065", png: "https://shadow-emotelist.onrender.com/data/dance/909000065.png" },
+                { id: "909000066", png: "https://shadow-emotelist.onrender.com/data/dance/909000066.png" },
+                { id: "909000067", png: "https://shadow-emotelist.onrender.com/data/dance/909000067.png" },
+                { id: "909000068", png: "https://shadow-emotelist.onrender.com/data/dance/909000068.png" },
+                { id: "909000069", png: "https://shadow-emotelist.onrender.com/data/dance/909000069.png" },
+                { id: "909000070", png: "https://shadow-emotelist.onrender.com/data/dance/909000070.png" },
+                { id: "909000071", png: "https://shadow-emotelist.onrender.com/data/dance/909000071.png" },
+                { id: "909000072", png: "https://shadow-emotelist.onrender.com/data/dance/909000072.png" },
+                { id: "909000073", png: "https://shadow-emotelist.onrender.com/data/dance/909000073.png" },
+                { id: "909000074", png: "https://shadow-emotelist.onrender.com/data/dance/909000074.png" },
+                { id: "909000075", png: "https://shadow-emotelist.onrender.com/data/dance/909000075.png" },
+                { id: "909000076", png: "https://shadow-emotelist.onrender.com/data/dance/909000076.png" },
+                { id: "909000077", png: "https://shadow-emotelist.onrender.com/data/dance/909000077.png" },
+                { id: "909000078", png: "https://shadow-emotelist.onrender.com/data/dance/909000078.png" },
+                { id: "909000079", png: "https://shadow-emotelist.onrender.com/data/dance/909000079.png" },
+                { id: "909000080", png: "https://shadow-emotelist.onrender.com/data/dance/909000080.png" },
+                { id: "909000081", png: "https://shadow-emotelist.onrender.com/data/dance/909000081.png" },
+                { id: "909000082", png: "https://shadow-emotelist.onrender.com/data/dance/909000082.png" },
+                { id: "909000083", png: "https://shadow-emotelist.onrender.com/data/dance/909000083.png" },
+                { id: "909000084", png: "https://shadow-emotelist.onrender.com/data/dance/909000084.png" },
+                { id: "909000085", png: "https://shadow-emotelist.onrender.com/data/dance/909000085.png" },
+                { id: "909000086", png: "https://shadow-emotelist.onrender.com/data/dance/909000086.png" },
+                { id: "909000087", png: "https://shadow-emotelist.onrender.com/data/dance/909000087.png" },
+                { id: "909000088", png: "https://shadow-emotelist.onrender.com/data/dance/909000088.png" },
+                { id: "909000089", png: "https://shadow-emotelist.onrender.com/data/dance/909000089.png" },
+                { id: "909000090", png: "https://shadow-emotelist.onrender.com/data/dance/909000090.png" },
+                { id: "909000091", png: "https://shadow-emotelist.onrender.com/data/dance/909000091.png" },
+                { id: "909000092", png: "https://shadow-emotelist.onrender.com/data/dance/909000092.png" },
+                { id: "909000093", png: "https://shadow-emotelist.onrender.com/data/dance/909000093.png" },
+                { id: "909000094", png: "https://shadow-emotelist.onrender.com/data/dance/909000094.png" },
+                { id: "909000095", png: "https://shadow-emotelist.onrender.com/data/dance/909000095.png" },
+                { id: "909000096", png: "https://shadow-emotelist.onrender.com/data/dance/909000096.png" },
+                { id: "909000097", png: "https://shadow-emotelist.onrender.com/data/dance/909000097.png" },
+                { id: "909000098", png: "https://shadow-emotelist.onrender.com/data/dance/909000098.png" },
+                { id: "909000099", png: "https://shadow-emotelist.onrender.com/data/dance/909000099.png" },
+                { id: "909000100", png: "https://shadow-emotelist.onrender.com/data/dance/909000100.png" },
+                { id: "909000101", png: "https://shadow-emotelist.onrender.com/data/dance/909000101.png" },
+                { id: "909000102", png: "https://shadow-emotelist.onrender.com/data/dance/909000102.png" },
+                { id: "909000103", png: "https://shadow-emotelist.onrender.com/data/dance/909000103.png" },
+                { id: "909000104", png: "https://shadow-emotelist.onrender.com/data/dance/909000104.png" },
+                { id: "909000105", png: "https://shadow-emotelist.onrender.com/data/dance/909000105.png" },
+                { id: "909000106", png: "https://shadow-emotelist.onrender.com/data/dance/909000106.png" },
+                { id: "909000107", png: "https://shadow-emotelist.onrender.com/data/dance/909000107.png" },
+                { id: "909000108", png: "https://shadow-emotelist.onrender.com/data/dance/909000108.png" },
+                { id: "909000109", png: "https://shadow-emotelist.onrender.com/data/dance/909000109.png" },
+                { id: "909000110", png: "https://shadow-emotelist.onrender.com/data/dance/909000110.png" },
+                { id: "909000111", png: "https://shadow-emotelist.onrender.com/data/dance/909000111.png" },
+                { id: "909000112", png: "https://shadow-emotelist.onrender.com/data/dance/909000112.png" },
+                { id: "909000113", png: "https://shadow-emotelist.onrender.com/data/dance/909000113.png" },
+                { id: "909000114", png: "https://shadow-emotelist.onrender.com/data/dance/909000114.png" },
+                { id: "909000115", png: "https://shadow-emotelist.onrender.com/data/dance/909000115.png" },
+                { id: "909000116", png: "https://shadow-emotelist.onrender.com/data/dance/909000116.png" },
+                { id: "909000117", png: "https://shadow-emotelist.onrender.com/data/dance/909000117.png" },
+                { id: "909000118", png: "https://shadow-emotelist.onrender.com/data/dance/909000118.png" },
+                { id: "909000119", png: "https://shadow-emotelist.onrender.com/data/dance/909000119.png" },
+                { id: "909000120", png: "https://shadow-emotelist.onrender.com/data/dance/909000120.png" },
+                { id: "909000121", png: "https://shadow-emotelist.onrender.com/data/dance/909000121.png" },
+                { id: "909000122", png: "https://shadow-emotelist.onrender.com/data/dance/909000122.png" },
+                { id: "909000123", png: "https://shadow-emotelist.onrender.com/data/dance/909000123.png" },
+                { id: "909000124", png: "https://shadow-emotelist.onrender.com/data/dance/909000124.png" },
+                { id: "909000125", png: "https://shadow-emotelist.onrender.com/data/dance/909000125.png" },
+                { id: "909000126", png: "https://shadow-emotelist.onrender.com/data/dance/909000126.png" },
+                { id: "909000127", png: "https://shadow-emotelist.onrender.com/data/dance/909000127.png" },
+                { id: "909000128", png: "https://shadow-emotelist.onrender.com/data/dance/909000128.png" },
+                { id: "909000129", png: "https://shadow-emotelist.onrender.com/data/dance/909000129.png" },
+                { id: "909000130", png: "https://shadow-emotelist.onrender.com/data/dance/909000130.png" },
+                { id: "909000131", png: "https://shadow-emotelist.onrender.com/data/dance/909000131.png" },
+                { id: "909000132", png: "https://shadow-emotelist.onrender.com/data/dance/909000132.png" },
+                { id: "909000133", png: "https://shadow-emotelist.onrender.com/data/dance/909000133.png" },
+                { id: "909000134", png: "https://shadow-emotelist.onrender.com/data/dance/909000134.png" },
+                { id: "909000135", png: "https://shadow-emotelist.onrender.com/data/dance/909000135.png" },
+                { id: "909000136", png: "https://shadow-emotelist.onrender.com/data/dance/909000136.png" },
+                { id: "909000137", png: "https://shadow-emotelist.onrender.com/data/dance/909000137.png" },
+                { id: "909000138", png: "https://shadow-emotelist.onrender.com/data/dance/909000138.png" },
+                { id: "909000139", png: "https://shadow-emotelist.onrender.com/data/dance/909000139.png" },
+                { id: "909000140", png: "https://shadow-emotelist.onrender.com/data/dance/909000140.png" },
+                { id: "909000141", png: "https://shadow-emotelist.onrender.com/data/dance/909000141.png" },
+                { id: "909000142", png: "https://shadow-emotelist.onrender.com/data/dance/909000142.png" },
+                { id: "909000143", png: "https://shadow-emotelist.onrender.com/data/dance/909000143.png" },
+                { id: "909000144", png: "https://shadow-emotelist.onrender.com/data/dance/909000144.png" },
+                { id: "909000145", png: "https://shadow-emotelist.onrender.com/data/dance/909000145.png" },
+                { id: "909000146", png: "https://shadow-emotelist.onrender.com/data/dance/909000146.png" },
+                { id: "909000147", png: "https://shadow-emotelist.onrender.com/data/dance/909000147.png" },
+                { id: "909000148", png: "https://shadow-emotelist.onrender.com/data/dance/909000148.png" },
+                { id: "909000149", png: "https://shadow-emotelist.onrender.com/data/dance/909000149.png" },
+                { id: "909000150", png: "https://shadow-emotelist.onrender.com/data/dance/909000150.png" },
+                
+                // Continue adding all your emote IDs here...
+                // I'm showing 150 for example, add all 700+ here
+                // Just copy-paste your complete emote list
+                
+                // Example for more emotes (you should add all):
+                { id: "909033001", png: "https://shadow-emotelist.onrender.com/data/dance/909033001.png" },
+                { id: "909033002", png: "https://shadow-emotelist.onrender.com/data/dance/909033002.png" },
+                { id: "909033003", png: "https://shadow-emotelist.onrender.com/data/dance/909033003.png" },
+                { id: "909033004", png: "https://shadow-emotelist.onrender.com/data/dance/909033004.png" },
+                { id: "909033005", png: "https://shadow-emotelist.onrender.com/data/dance/909033005.png" },
+                { id: "909033006", png: "https://shadow-emotelist.onrender.com/data/dance/909033006.png" },
+                { id: "909033007", png: "https://shadow-emotelist.onrender.com/data/dance/909033007.png" },
+                { id: "909033008", png: "https://shadow-emotelist.onrender.com/data/dance/909033008.png" },
+                { id: "909033009", png: "https://shadow-emotelist.onrender.com/data/dance/909033009.png" },
+                { id: "909033010", png: "https://shadow-emotelist.onrender.com/data/dance/909033010.png" },
+                { id: "909034001", png: "https://shadow-emotelist.onrender.com/data/dance/909034001.png" },
+                { id: "909034002", png: "https://shadow-emotelist.onrender.com/data/dance/909034002.png" },
+                { id: "909034003", png: "https://shadow-emotelist.onrender.com/data/dance/909034003.png" },
+                { id: "909034004", png: "https://shadow-emotelist.onrender.com/data/dance/909034004.png" },
+                { id: "909034005", png: "https://shadow-emotelist.onrender.com/data/dance/909034005.png" },
+                { id: "909034006", png: "https://shadow-emotelist.onrender.com/data/dance/909034006.png" },
+                { id: "909034007", png: "https://shadow-emotelist.onrender.com/data/dance/909034007.png" },
+                { id: "909034008", png: "https://shadow-emotelist.onrender.com/data/dance/909034008.png" },
+                { id: "909034009", png: "https://shadow-emotelist.onrender.com/data/dance/909034009.png" },
+                { id: "909034010", png: "https://shadow-emotelist.onrender.com/data/dance/909034010.png" },
+                { id: "909034011", png: "https://shadow-emotelist.onrender.com/data/dance/909034011.png" },
+                { id: "909034012", png: "https://shadow-emotelist.onrender.com/data/dance/909034012.png" },
+                { id: "909034013", png: "https://shadow-emotelist.onrender.com/data/dance/909034013.png" },
+                { id: "909034014", png: "https://shadow-emotelist.onrender.com/data/dance/909034014.png" },
+                { id: "909035001", png: "https://shadow-emotelist.onrender.com/data/dance/909035001.png" },
+                { id: "909035002", png: "https://shadow-emotelist.onrender.com/data/dance/909035002.png" },
+                { id: "909035003", png: "https://shadow-emotelist.onrender.com/data/dance/909035003.png" },
+                { id: "909035004", png: "https://shadow-emotelist.onrender.com/data/dance/909035004.png" },
+                { id: "909035005", png: "https://shadow-emotelist.onrender.com/data/dance/909035005.png" },
+                { id: "909035006", png: "https://shadow-emotelist.onrender.com/data/dance/909035006.png" },
+                { id: "909035007", png: "https://shadow-emotelist.onrender.com/data/dance/909035007.png" },
+                { id: "909035008", png: "https://shadow-emotelist.onrender.com/data/dance/909035008.png" },
+                { id: "909035009", png: "https://shadow-emotelist.onrender.com/data/dance/909035009.png" },
+                { id: "909035010", png: "https://shadow-emotelist.onrender.com/data/dance/909035010.png" },
+                { id: "909035011", png: "https://shadow-emotelist.onrender.com/data/dance/909035011.png" },
+                { id: "909035012", png: "https://shadow-emotelist.onrender.com/data/dance/909035012.png" },
+                { id: "909035013", png: "https://shadow-emotelist.onrender.com/data/dance/909035013.png" },
+                { id: "909035014", png: "https://shadow-emotelist.onrender.com/data/dance/909035014.png" },
+                { id: "909035015", png: "https://shadow-emotelist.onrender.com/data/dance/909035015.png" },
+                { id: "909036001", png: "https://shadow-emotelist.onrender.com/data/dance/909036001.png" },
+                { id: "909036002", png: "https://shadow-emotelist.onrender.com/data/dance/909036002.png" },
+                { id: "909036003", png: "https://shadow-emotelist.onrender.com/data/dance/909036003.png" },
+                { id: "909036004", png: "https://shadow-emotelist.onrender.com/data/dance/909036004.png" },
+                { id: "909036005", png: "https://shadow-emotelist.onrender.com/data/dance/909036005.png" },
+                { id: "909036006", png: "https://shadow-emotelist.onrender.com/data/dance/909036006.png" },
+                { id: "909036007", png: "https://shadow-emotelist.onrender.com/data/dance/909036007.png" },
+                { id: "909036008", png: "https://shadow-emotelist.onrender.com/data/dance/909036008.png" },
+                { id: "909036009", png: "https://shadow-emotelist.onrender.com/data/dance/909036009.png" },
+                { id: "909036010", png: "https://shadow-emotelist.onrender.com/data/dance/909036010.png" },
+                { id: "909036011", png: "https://shadow-emotelist.onrender.com/data/dance/909036011.png" },
+                { id: "909036012", png: "https://shadow-emotelist.onrender.com/data/dance/909036012.png" },
+                { id: "909036013", png: "https://shadow-emotelist.onrender.com/data/dance/909036013.png" },
+                { id: "909036014", png: "https://shadow-emotelist.onrender.com/data/dance/909036014.png" },
+                { id: "909037001", png: "https://shadow-emotelist.onrender.com/data/dance/909037001.png" },
+                { id: "909037002", png: "https://shadow-emotelist.onrender.com/data/dance/909037002.png" },
+                { id: "909037003", png: "https://shadow-emotelist.onrender.com/data/dance/909037003.png" },
+                { id: "909037004", png: "https://shadow-emotelist.onrender.com/data/dance/909037004.png" },
+                { id: "909037005", png: "https://shadow-emotelist.onrender.com/data/dance/909037005.png" },
+                { id: "909037006", png: "https://shadow-emotelist.onrender.com/data/dance/909037006.png" },
+                { id: "909037007", png: "https://shadow-emotelist.onrender.com/data/dance/909037007.png" },
+                { id: "909037008", png: "https://shadow-emotelist.onrender.com/data/dance/909037008.png" },
+                { id: "909037009", png: "https://shadow-emotelist.onrender.com/data/dance/909037009.png" },
+                { id: "909037010", png: "https://shadow-emotelist.onrender.com/data/dance/909037010.png" },
+                { id: "909037011", png: "https://shadow-emotelist.onrender.com/data/dance/909037011.png" },
+                { id: "909037012", png: "https://shadow-emotelist.onrender.com/data/dance/909037012.png" },
+                { id: "909038001", png: "https://shadow-emotelist.onrender.com/data/dance/909038001.png" },
+                { id: "909038002", png: "https://shadow-emotelist.onrender.com/data/dance/909038002.png" },
+                { id: "909038003", png: "https://shadow-emotelist.onrender.com/data/dance/909038003.png" },
+                { id: "909038004", png: "https://shadow-emotelist.onrender.com/data/dance/909038004.png" },
+                { id: "909038005", png: "https://shadow-emotelist.onrender.com/data/dance/909038005.png" },
+                { id: "909038006", png: "https://shadow-emotelist.onrender.com/data/dance/909038006.png" },
+                { id: "909038007", png: "https://shadow-emotelist.onrender.com/data/dance/909038007.png" },
+                { id: "909038008", png: "https://shadow-emotelist.onrender.com/data/dance/909038008.png" },
+                { id: "909038009", png: "https://shadow-emotelist.onrender.com/data/dance/909038009.png" },
+                { id: "909038010", png: "https://shadow-emotelist.onrender.com/data/dance/909038010.png" },
+                { id: "909038011", png: "https://shadow-emotelist.onrender.com/data/dance/909038011.png" },
+                { id: "909038012", png: "https://shadow-emotelist.onrender.com/data/dance/909038012.png" },
+                { id: "909038013", png: "https://shadow-emotelist.onrender.com/data/dance/909038013.png" },
+                { id: "909039001", png: "https://shadow-emotelist.onrender.com/data/dance/909039001.png" },
+                { id: "909039002", png: "https://shadow-emotelist.onrender.com/data/dance/909039002.png" },
+                { id: "909039003", png: "https://shadow-emotelist.onrender.com/data/dance/909039003.png" },
+                { id: "909039004", png: "https://shadow-emotelist.onrender.com/data/dance/909039004.png" },
+                { id: "909039005", png: "https://shadow-emotelist.onrender.com/data/dance/909039005.png" },
+                { id: "909039006", png: "https://shadow-emotelist.onrender.com/data/dance/909039006.png" },
+                { id: "909039007", png: "https://shadow-emotelist.onrender.com/data/dance/909039007.png" },
+                { id: "909039008", png: "https://shadow-emotelist.onrender.com/data/dance/909039008.png" },
+                { id: "909039009", png: "https://shadow-emotelist.onrender.com/data/dance/909039009.png" },
+                { id: "909039010", png: "https://shadow-emotelist.onrender.com/data/dance/909039010.png" },
+                { id: "909039011", png: "https://shadow-emotelist.onrender.com/data/dance/909039011.png" },
+                { id: "909039012", png: "https://shadow-emotelist.onrender.com/data/dance/909039012.png" },
+                { id: "909039013", png: "https://shadow-emotelist.onrender.com/data/dance/909039013.png" },
+                { id: "909039014", png: "https://shadow-emotelist.onrender.com/data/dance/909039014.png" },
+                { id: "909040001", png: "https://shadow-emotelist.onrender.com/data/dance/909040001.png" },
+                { id: "909040002", png: "https://shadow-emotelist.onrender.com/data/dance/909040002.png" },
+                { id: "909040003", png: "https://shadow-emotelist.onrender.com/data/dance/909040003.png" },
+                { id: "909040004", png: "https://shadow-emotelist.onrender.com/data/dance/909040004.png" },
+                { id: "909040005", png: "https://shadow-emotelist.onrender.com/data/dance/909040005.png" },
+                { id: "909040006", png: "https://shadow-emotelist.onrender.com/data/dance/909040006.png" },
+                { id: "909040007", png: "https://shadow-emotelist.onrender.com/data/dance/909040007.png" },
+                { id: "909040008", png: "https://shadow-emotelist.onrender.com/data/dance/909040008.png" },
+                { id: "909040009", png: "https://shadow-emotelist.onrender.com/data/dance/909040009.png" },
+                { id: "909040010", png: "https://shadow-emotelist.onrender.com/data/dance/909040010.png" },
+                { id: "909040011", png: "https://shadow-emotelist.onrender.com/data/dance/909040011.png" },
+                { id: "909040012", png: "https://shadow-emotelist.onrender.com/data/dance/909040012.png" },
+                { id: "909040013", png: "https://shadow-emotelist.onrender.com/data/dance/909040013.png" },
+                { id: "909040014", png: "https://shadow-emotelist.onrender.com/data/dance/909040014.png" },
+                { id: "909041001", png: "https://shadow-emotelist.onrender.com/data/dance/909041001.png" },
+                { id: "909041002", png: "https://shadow-emotelist.onrender.com/data/dance/909041002.png" },
+                { id: "909041003", png: "https://shadow-emotelist.onrender.com/data/dance/909041003.png" },
+                { id: "909041004", png: "https://shadow-emotelist.onrender.com/data/dance/909041004.png" },
+                { id: "909041005", png: "https://shadow-emotelist.onrender.com/data/dance/909041005.png" },
+                { id: "909041006", png: "https://shadow-emotelist.onrender.com/data/dance/909041006.png" },
+                { id: "909041007", png: "https://shadow-emotelist.onrender.com/data/dance/909041007.png" },
+                { id: "909041008", png: "https://shadow-emotelist.onrender.com/data/dance/909041008.png" },
+                { id: "909041009", png: "https://shadow-emotelist.onrender.com/data/dance/909041009.png" },
+                { id: "909041010", png: "https://shadow-emotelist.onrender.com/data/dance/909041010.png" },
+                { id: "909041011", png: "https://shadow-emotelist.onrender.com/data/dance/909041011.png" },
+                { id: "909041012", png: "https://shadow-emotelist.onrender.com/data/dance/909041012.png" },
+                { id: "909041013", png: "https://shadow-emotelist.onrender.com/data/dance/909041013.png" },
+                { id: "909041014", png: "https://shadow-emotelist.onrender.com/data/dance/909041014.png" },
+                { id: "909041015", png: "https://shadow-emotelist.onrender.com/data/dance/909041015.png" },
+                { id: "909042001", png: "https://shadow-emotelist.onrender.com/data/dance/909042001.png" },
+                { id: "909042002", png: "https://shadow-emotelist.onrender.com/data/dance/909042002.png" },
+                { id: "909042003", png: "https://shadow-emotelist.onrender.com/data/dance/909042003.png" },
+                { id: "909042004", png: "https://shadow-emotelist.onrender.com/data/dance/909042004.png" },
+                { id: "909042005", png: "https://shadow-emotelist.onrender.com/data/dance/909042005.png" },
+                { id: "909042006", png: "https://shadow-emotelist.onrender.com/data/dance/909042006.png" },
+                { id: "909042007", png: "https://shadow-emotelist.onrender.com/data/dance/909042007.png" },
+                { id: "909042008", png: "https://shadow-emotelist.onrender.com/data/dance/909042008.png" },
+                { id: "909042009", png: "https://shadow-emotelist.onrender.com/data/dance/909042009.png" },
+                { id: "909042010", png: "https://shadow-emotelist.onrender.com/data/dance/909042010.png" },
+                { id: "909042011", png: "https://shadow-emotelist.onrender.com/data/dance/909042011.png" },
+                { id: "909042012", png: "https://shadow-emotelist.onrender.com/data/dance/909042012.png" },
+                { id: "909042013", png: "https://shadow-emotelist.onrender.com/data/dance/909042013.png" },
+                { id: "909042014", png: "https://shadow-emotelist.onrender.com/data/dance/909042014.png" },
+                { id: "909042015", png: "https://shadow-emotelist.onrender.com/data/dance/909042015.png" },
+                { id: "909042016", png: "https://shadow-emotelist.onrender.com/data/dance/909042016.png" },
+                { id: "909042017", png: "https://shadow-emotelist.onrender.com/data/dance/909042017.png" },
+                { id: "909042018", png: "https://shadow-emotelist.onrender.com/data/dance/909042018.png" },
+                { id: "909042019", png: "https://shadow-emotelist.onrender.com/data/dance/909042019.png" },
+                { id: "909042020", png: "https://shadow-emotelist.onrender.com/data/dance/909042020.png" },
+                { id: "909043001", png: "https://shadow-emotelist.onrender.com/data/dance/909043001.png" },
+                { id: "909043002", png: "https://shadow-emotelist.onrender.com/data/dance/909043002.png" },
+                { id: "909043003", png: "https://shadow-emotelist.onrender.com/data/dance/909043003.png" },
+                { id: "909043004", png: "https://shadow-emotelist.onrender.com/data/dance/909043004.png" },
+                { id: "909043005", png: "https://shadow-emotelist.onrender.com/data/dance/909043005.png" },
+                { id: "909043006", png: "https://shadow-emotelist.onrender.com/data/dance/909043006.png" },
+                { id: "909043007", png: "https://shadow-emotelist.onrender.com/data/dance/909043007.png" },
+                { id: "909043008", png: "https://shadow-emotelist.onrender.com/data/dance/909043008.png" },
+                { id: "909043009", png: "https://shadow-emotelist.onrender.com/data/dance/909043009.png" },
+                { id: "909043010", png: "https://shadow-emotelist.onrender.com/data/dance/909043010.png" },
+                { id: "909043011", png: "https://shadow-emotelist.onrender.com/data/dance/909043011.png" },
+                { id: "909043012", png: "https://shadow-emotelist.onrender.com/data/dance/909043012.png" },
+                { id: "909043013", png: "https://shadow-emotelist.onrender.com/data/dance/909043013.png" },
+                { id: "909043014", png: "https://shadow-emotelist.onrender.com/data/dance/909043014.png" },
+                { id: "909043015", png: "https://shadow-emotelist.onrender.com/data/dance/909043015.png" },
+                { id: "909044001", png: "https://shadow-emotelist.onrender.com/data/dance/909044001.png" },
+                { id: "909044002", png: "https://shadow-emotelist.onrender.com/data/dance/909044002.png" },
+                { id: "909044003", png: "https://shadow-emotelist.onrender.com/data/dance/909044003.png" },
+                { id: "909044004", png: "https://shadow-emotelist.onrender.com/data/dance/909044004.png" },
+                { id: "909044005", png: "https://shadow-emotelist.onrender.com/data/dance/909044005.png" },
+                { id: "909044006", png: "https://shadow-emotelist.onrender.com/data/dance/909044006.png" },
+                { id: "909044007", png: "https://shadow-emotelist.onrender.com/data/dance/909044007.png" },
+                { id: "909044008", png: "https://shadow-emotelist.onrender.com/data/dance/909044008.png" },
+                { id: "909044009", png: "https://shadow-emotelist.onrender.com/data/dance/909044009.png" },
+                { id: "909044010", png: "https://shadow-emotelist.onrender.com/data/dance/909044010.png" },
+                { id: "909044011", png: "https://shadow-emotelist.onrender.com/data/dance/909044011.png" },
+                { id: "909044012", png: "https://shadow-emotelist.onrender.com/data/dance/909044012.png" },
+                { id: "909044013", png: "https://shadow-emotelist.onrender.com/data/dance/909044013.png" },
+                { id: "909044014", png: "https://shadow-emotelist.onrender.com/data/dance/909044014.png" },
+                { id: "909044015", png: "https://shadow-emotelist.onrender.com/data/dance/909044015.png" },
+                { id: "909044016", png: "https://shadow-emotelist.onrender.com/data/dance/909044016.png" },
+                { id: "909044017", png: "https://shadow-emotelist.onrender.com/data/dance/909044017.png" },
+                { id: "909044018", png: "https://shadow-emotelist.onrender.com/data/dance/909044018.png" },
+                { id: "909044019", png: "https://shadow-emotelist.onrender.com/data/dance/909044019.png" },
+                { id: "909044020", png: "https://shadow-emotelist.onrender.com/data/dance/909044020.png" },
+                { id: "909045001", png: "https://shadow-emotelist.onrender.com/data/dance/909045001.png" },
+                { id: "909045002", png: "https://shadow-emotelist.onrender.com/data/dance/909045002.png" },
+                { id: "909045003", png: "https://shadow-emotelist.onrender.com/data/dance/909045003.png" },
+                { id: "909045004", png: "https://shadow-emotelist.onrender.com/data/dance/909045004.png" },
+                { id: "909045005", png: "https://shadow-emotelist.onrender.com/data/dance/909045005.png" },
+                { id: "909045006", png: "https://shadow-emotelist.onrender.com/data/dance/909045006.png" },
+                { id: "909045007", png: "https://shadow-emotelist.onrender.com/data/dance/909045007.png" },
+                { id: "909045008", png: "https://shadow-emotelist.onrender.com/data/dance/909045008.png" },
+                { id: "909045009", png: "https://shadow-emotelist.onrender.com/data/dance/909045009.png" },
+                { id: "909045010", png: "https://shadow-emotelist.onrender.com/data/dance/909045010.png" },
+                { id: "909045011", png: "https://shadow-emotelist.onrender.com/data/dance/909045011.png" },
+                { id: "909045012", png: "https://shadow-emotelist.onrender.com/data/dance/909045012.png" },
+                { id: "909045013", png: "https://shadow-emotelist.onrender.com/data/dance/909045013.png" },
+                { id: "909045014", png: "https://shadow-emotelist.onrender.com/data/dance/909045014.png" },
+                { id: "909045015", png: "https://shadow-emotelist.onrender.com/data/dance/909045015.png" },
+                { id: "909045016", png: "https://shadow-emotelist.onrender.com/data/dance/909045016.png" },
+                { id: "909045017", png: "https://shadow-emotelist.onrender.com/data/dance/909045017.png" },
+                { id: "909045018", png: "https://shadow-emotelist.onrender.com/data/dance/909045018.png" },
+                { id: "909045019", png: "https://shadow-emotelist.onrender.com/data/dance/909045019.png" },
+                { id: "909045020", png: "https://shadow-emotelist.onrender.com/data/dance/909045020.png" },
+                { id: "909046001", png: "https://shadow-emotelist.onrender.com/data/dance/909046001.png" },
+                { id: "909046002", png: "https://shadow-emotelist.onrender.com/data/dance/909046002.png" },
+                { id: "909046003", png: "https://shadow-emotelist.onrender.com/data/dance/909046003.png" },
+                { id: "909046004", png: "https://shadow-emotelist.onrender.com/data/dance/909046004.png" },
+                { id: "909046005", png: "https://shadow-emotelist.onrender.com/data/dance/909046005.png" },
+                { id: "909046006", png: "https://shadow-emotelist.onrender.com/data/dance/909046006.png" },
+                { id: "909046007", png: "https://shadow-emotelist.onrender.com/data/dance/909046007.png" },
+                { id: "909046008", png: "https://shadow-emotelist.onrender.com/data/dance/909046008.png" },
+                { id: "909046009", png: "https://shadow-emotelist.onrender.com/data/dance/909046009.png" },
+                { id: "909046010", png: "https://shadow-emotelist.onrender.com/data/dance/909046010.png" },
+                { id: "909046011", png: "https://shadow-emotelist.onrender.com/data/dance/909046011.png" },
+                { id: "909046012", png: "https://shadow-emotelist.onrender.com/data/dance/909046012.png" },
+                { id: "909046013", png: "https://shadow-emotelist.onrender.com/data/dance/909046013.png" },
+                { id: "909046014", png: "https://shadow-emotelist.onrender.com/data/dance/909046014.png" },
+                { id: "909046015", png: "https://shadow-emotelist.onrender.com/data/dance/909046015.png" },
+                { id: "909046016", png: "https://shadow-emotelist.onrender.com/data/dance/909046016.png" },
+                { id: "909046017", png: "https://shadow-emotelist.onrender.com/data/dance/909046017.png" },
+                { id: "909046018", png: "https://shadow-emotelist.onrender.com/data/dance/909046018.png" },
+                { id: "909046019", png: "https://shadow-emotelist.onrender.com/data/dance/909046019.png" },
+                { id: "909046020", png: "https://shadow-emotelist.onrender.com/data/dance/909046020.png" },
+                { id: "909047001", png: "https://shadow-emotelist.onrender.com/data/dance/909047001.png" },
+                { id: "909047002", png: "https://shadow-emotelist.onrender.com/data/dance/909047002.png" },
+                { id: "909047003", png: "https://shadow-emotelist.onrender.com/data/dance/909047003.png" },
+                { id: "909047004", png: "https://shadow-emotelist.onrender.com/data/dance/909047004.png" },
+                { id: "909047005", png: "https://shadow-emotelist.onrender.com/data/dance/909047005.png" },
+                { id: "909047006", png: "https://shadow-emotelist.onrender.com/data/dance/909047006.png" },
+                { id: "909047007", png: "https://shadow-emotelist.onrender.com/data/dance/909047007.png" },
+                { id: "909047008", png: "https://shadow-emotelist.onrender.com/data/dance/909047008.png" },
+                { id: "909047009", png: "https://shadow-emotelist.onrender.com/data/dance/909047009.png" },
+                { id: "909047010", png: "https://shadow-emotelist.onrender.com/data/dance/909047010.png" },
+                { id: "909047011", png: "https://shadow-emotelist.onrender.com/data/dance/909047011.png" },
+                { id: "909047012", png: "https://shadow-emotelist.onrender.com/data/dance/909047012.png" },
+                { id: "909047013", png: "https://shadow-emotelist.onrender.com/data/dance/909047013.png" },
+                { id: "909047014", png: "https://shadow-emotelist.onrender.com/data/dance/909047014.png" },
+                { id: "909047015", png: "https://shadow-emotelist.onrender.com/data/dance/909047015.png" },
+                { id: "909047016", png: "https://shadow-emotelist.onrender.com/data/dance/909047016.png" },
+                { id: "909047017", png: "https://shadow-emotelist.onrender.com/data/dance/909047017.png" },
+                { id: "909047018", png: "https://shadow-emotelist.onrender.com/data/dance/909047018.png" },
+                { id: "909047019", png: "https://shadow-emotelist.onrender.com/data/dance/909047019.png" },
+                { id: "909047020", png: "https://shadow-emotelist.onrender.com/data/dance/909047020.png" },
+                { id: "909048001", png: "https://shadow-emotelist.onrender.com/data/dance/909048001.png" },
+                { id: "909048002", png: "https://shadow-emotelist.onrender.com/data/dance/909048002.png" },
+                { id: "909048003", png: "https://shadow-emotelist.onrender.com/data/dance/909048003.png" },
+                { id: "909048004", png: "https://shadow-emotelist.onrender.com/data/dance/909048004.png" },
+                { id: "909048005", png: "https://shadow-emotelist.onrender.com/data/dance/909048005.png" },
+                { id: "909048006", png: "https://shadow-emotelist.onrender.com/data/dance/909048006.png" },
+                { id: "909048007", png: "https://shadow-emotelist.onrender.com/data/dance/909048007.png" },
+                { id: "909048008", png: "https://shadow-emotelist.onrender.com/data/dance/909048008.png" },
+                { id: "909048009", png: "https://shadow-emotelist.onrender.com/data/dance/909048009.png" },
+                { id: "909048010", png: "https://shadow-emotelist.onrender.com/data/dance/909048010.png" },
+                { id: "909048011", png: "https://shadow-emotelist.onrender.com/data/dance/909048011.png" },
+                { id: "909048012", png: "https://shadow-emotelist.onrender.com/data/dance/909048012.png" },
+                { id: "909048013", png: "https://shadow-emotelist.onrender.com/data/dance/909048013.png" },
+                { id: "909048014", png: "https://shadow-emotelist.onrender.com/data/dance/909048014.png" },
+                { id: "909048015", png: "https://shadow-emotelist.onrender.com/data/dance/909048015.png" },
+                { id: "909048016", png: "https://shadow-emotelist.onrender.com/data/dance/909048016.png" },
+                { id: "909048017", png: "https://shadow-emotelist.onrender.com/data/dance/909048017.png" },
+                { id: "909048018", png: "https://shadow-emotelist.onrender.com/data/dance/909048018.png" },
+                { id: "909048019", png: "https://shadow-emotelist.onrender.com/data/dance/909048019.png" },
+                { id: "909048020", png: "https://shadow-emotelist.onrender.com/data/dance/909048020.png" },
+                { id: "909049001", png: "https://shadow-emotelist.onrender.com/data/dance/909049001.png" },
+                { id: "909049002", png: "https://shadow-emotelist.onrender.com/data/dance/909049002.png" },
+                { id: "909049003", png: "https://shadow-emotelist.onrender.com/data/dance/909049003.png" },
+                { id: "909049004", png: "https://shadow-emotelist.onrender.com/data/dance/909049004.png" },
+                { id: "909049005", png: "https://shadow-emotelist.onrender.com/data/dance/909049005.png" },
+                { id: "909049006", png: "https://shadow-emotelist.onrender.com/data/dance/909049006.png" },
+                { id: "909049007", png: "https://shadow-emotelist.onrender.com/data/dance/909049007.png" },
+                { id: "909049008", png: "https://shadow-emotelist.onrender.com/data/dance/909049008.png" },
+                { id: "909049009", png: "https://shadow-emotelist.onrender.com/data/dance/909049009.png" },
+                { id: "909049010", png: "https://shadow-emotelist.onrender.com/data/dance/909049010.png" },
+                { id: "909049011", png: "https://shadow-emotelist.onrender.com/data/dance/909049011.png" },
+                { id: "909049012", png: "https://shadow-emotelist.onrender.com/data/dance/909049012.png" },
+                { id: "909049013", png: "https://shadow-emotelist.onrender.com/data/dance/909049013.png" },
+                { id: "909049014", png: "https://shadow-emotelist.onrender.com/data/dance/909049014.png" },
+                { id: "909049015", png: "https://shadow-emotelist.onrender.com/data/dance/909049015.png" },
+                { id: "909049016", png: "https://shadow-emotelist.onrender.com/data/dance/909049016.png" },
+                { id: "909049017", png: "https://shadow-emotelist.onrender.com/data/dance/909049017.png" },
+                { id: "909049018", png: "https://shadow-emotelist.onrender.com/data/dance/909049018.png" },
+                { id: "909049019", png: "https://shadow-emotelist.onrender.com/data/dance/909049019.png" },
+                { id: "909049020", png: "https://shadow-emotelist.onrender.com/data/dance/909049020.png" },
+                { id: "909050001", png: "https://shadow-emotelist.onrender.com/data/dance/909050001.png" },
+                { id: "909050002", png: "https://shadow-emotelist.onrender.com/data/dance/909050002.png" },
+                { id: "909050003", png: "https://shadow-emotelist.onrender.com/data/dance/909050003.png" },
+                { id: "909050004", png: "https://shadow-emotelist.onrender.com/data/dance/909050004.png" },
+                { id: "909050005", png: "https://shadow-emotelist.onrender.com/data/dance/909050005.png" },
+                { id: "909050006", png: "https://shadow-emotelist.onrender.com/data/dance/909050006.png" },
+                { id: "909050007", png: "https://shadow-emotelist.onrender.com/data/dance/909050007.png" },
+                { id: "909050008", png: "https://shadow-emotelist.onrender.com/data/dance/909050008.png" },
+                { id: "909050009", png: "https://shadow-emotelist.onrender.com/data/dance/909050009.png" },
+                { id: "909050010", png: "https://shadow-emotelist.onrender.com/data/dance/909050010.png" },
+                { id: "909050011", png: "https://shadow-emotelist.onrender.com/data/dance/909050011.png" },
+                { id: "909050012", png: "https://shadow-emotelist.onrender.com/data/dance/909050012.png" },
+                { id: "909050013", png: "https://shadow-emotelist.onrender.com/data/dance/909050013.png" },
+                { id: "909050014", png: "https://shadow-emotelist.onrender.com/data/dance/909050014.png" },
+                { id: "909050015", png: "https://shadow-emotelist.onrender.com/data/dance/909050015.png" },
+                { id: "909050016", png: "https://shadow-emotelist.onrender.com/data/dance/909050016.png" },
+                { id: "909050017", png: "https://shadow-emotelist.onrender.com/data/dance/909050017.png" },
+                { id: "909050018", png: "https://shadow-emotelist.onrender.com/data/dance/909050018.png" },
+                { id: "909050019", png: "https://shadow-emotelist.onrender.com/data/dance/909050019.png" },
+                { id: "909050020", png: "https://shadow-emotelist.onrender.com/data/dance/909050020.png" },
+                { id: "909050021", png: "https://shadow-emotelist.onrender.com/data/dance/909050021.png" },
+                { id: "909050022", png: "https://shadow-emotelist.onrender.com/data/dance/909050022.png" },
+                { id: "909050023", png: "https://shadow-emotelist.onrender.com/data/dance/909050023.png" },
+                { id: "909050024", png: "https://shadow-emotelist.onrender.com/data/dance/909050024.png" },
+                { id: "909050025", png: "https://shadow-emotelist.onrender.com/data/dance/909050025.png" },
+                { id: "909050026", png: "https://shadow-emotelist.onrender.com/data/dance/909050026.png" },
+                { id: "909050027", png: "https://shadow-emotelist.onrender.com/data/dance/909050027.png" },
+                { id: "909050028", png: "https://shadow-emotelist.onrender.com/data/dance/909050028.png" },
+                { id: "909050029", png: "https://shadow-emotelist.onrender.com/data/dance/909050029.png" },
+                { id: "909050030", png: "https://shadow-emotelist.onrender.com/data/dance/909050030.png" }
+                // Add all remaining emote IDs here...
+            ];
+            
+            totalEmotes = allDanceEmotes.length;
         }
         
-        // Timer update function
+        // ========== PAGE SWITCHING ==========
+        function showLogin() {
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('dashboardPage').style.display = 'none';
+        }
+        
+        function showDashboard() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboardPage').style.display = 'block';
+            
+            // Initialize dashboard
+            initDashboard();
+        }
+        
+        // ========== LOGIN PAGE FUNCTIONS ==========
         function updateTimer() {
             const now = Date.now();
             const tomorrow = new Date();
@@ -792,77 +1736,11 @@
                 `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
         
-        // Check Google Sheets connection
-        async function checkSheetConnection() {
-            const statusElement = document.getElementById('sheetStatus');
-            
-            statusElement.style.display = 'block';
-            statusElement.className = 'sheet-status';
-            statusElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting to Google Sheets Database...';
-            
-            try {
-                const url = `https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEET_ID}?key=${GOOGLE_API_KEY}`;
-                const response = await fetch(url);
-                
-                if (response.ok) {
-                    statusElement.className = 'sheet-status sheet-connected';
-                    statusElement.innerHTML = '<i class="fas fa-check-circle"></i> Connected to Google Sheets Database';
-                    
-                    setTimeout(() => {
-                        statusElement.style.display = 'none';
-                    }, 3000);
-                    
-                    return true;
-                } else {
-                    throw new Error('Failed to connect');
-                }
-            } catch (error) {
-                statusElement.className = 'sheet-status sheet-disconnected';
-                statusElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Database Connection Error - Please try again later';
-                
-                setTimeout(() => {
-                    statusElement.style.display = 'none';
-                }, 5000);
-                return false;
-            }
-        }
-        
-        // Load user stats from Google Sheets
-        async function loadUserStats() {
-            try {
-                const range = `${SHEET_NAME}!A:D`;
-                const url = `https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEET_ID}/values/${range}?key=${GOOGLE_API_KEY}`;
-                
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                if (data.values && data.values.length > 1) {
-                    const totalKeys = data.values.length - 1;
-                    
-                    let usedCount = 0;
-                    for (let i = 1; i < data.values.length; i++) {
-                        const row = data.values[i];
-                        if (row[1] && row[1].toLowerCase().trim() === 'used') {
-                            usedCount++;
-                        }
-                    }
-                    
-                    document.getElementById('sheetKeysCount').textContent = totalKeys;
-                    document.getElementById('usedKeysCount').textContent = usedCount;
-                    document.getElementById('availableAccountsCount').textContent = preloadedAccounts.length;
-                }
-            } catch (error) {
-                console.error('Error loading stats:', error);
-            }
-        }
-        
-        // Start live stats
         function startLiveStats() {
             setInterval(updateLiveStats, 30000);
             updateLiveStats();
         }
         
-        // Update live stats
         function updateLiveStats() {
             const now = new Date();
             const currentHour = now.getHours();
@@ -903,7 +1781,6 @@
             animateCounter('onlineNow', formatNumber(onlineNow));
         }
         
-        // Animate counter
         function animateCounter(elementId, newValue) {
             const element = document.getElementById(elementId);
             if (element.textContent !== newValue) {
@@ -915,7 +1792,6 @@
             }
         }
         
-        // Show message
         function showMessage(text, type) {
             const msg = document.getElementById('message');
             msg.textContent = text;
@@ -927,7 +1803,6 @@
             }, 3000);
         }
         
-        // Start password process
         function startPasswordProcess() {
             const modal = document.getElementById('generatingModal');
             const countdown = document.getElementById('countdown');
@@ -947,7 +1822,49 @@
             }, 1000);
         }
         
-        // MAIN VERIFICATION FUNCTION - UPDATED WITH APP SCRIPT
+        async function verifyKeyWithAppScript(key) {
+            try {
+                const response = await fetch(`${APPS_SCRIPT_URL}?action=verifyKey&key=${encodeURIComponent(key)}&password=BULL2025`);
+                
+                if (!response.ok) {
+                    return {
+                        success: false,
+                        error: 'Server connection failed'
+                    };
+                }
+                
+                const data = await response.json();
+                console.log('Apps Script Response:', data);
+                return data;
+            } catch (error) {
+                console.error('Apps Script Error:', error);
+                return {
+                    success: false,
+                    error: 'Verification failed. Please try again.'
+                };
+            }
+        }
+        
+        async function markKeyAsUsedInSheet(key, username, password) {
+            try {
+                console.log('Marking key as used:', key);
+                
+                const response = await fetch(`${APPS_SCRIPT_URL}?action=markUsed&key=${encodeURIComponent(key)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&adminPass=BULL2025`);
+                
+                if (!response.ok) {
+                    console.error('Failed to mark key as used');
+                    return false;
+                }
+                
+                const data = await response.json();
+                console.log('Mark used response:', data);
+                return data.success === true;
+            } catch (error) {
+                console.error('Error marking key as used:', error);
+                return false;
+            }
+        }
+        
         async function verifyAndGenerate() {
             const enteredKey = document.getElementById('enterKey').value.trim().toUpperCase();
             
@@ -988,70 +1905,26 @@
                 statusText.textContent = '✅ Key verified successfully!';
                 statusText.style.color = '#4CAF50';
                 
-                // STEP 2: Get username and password
-                let username = "";
-                let password = "";
+                // Get username and password from response
+                let username = scriptResult.username || "User";
+                let password = scriptResult.password || "Pass";
                 
-                // Try to get from Google Sheets
-                try {
-                    const range = `keys!A:D`;
-                    const url = `https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEET_ID}/values/${range}?key=${GOOGLE_API_KEY}`;
-                    
-                    const response = await fetch(url);
-                    const data = await response.json();
-                    
-                    if (data.values) {
-                        for (let i = 0; i < data.values.length; i++) {
-                            const row = data.values[i];
-                            if (row[0] && row[0].trim().toUpperCase() === enteredKey) {
-                                username = row[2] ? row[2].trim() : "";
-                                password = row[3] ? row[3].trim() : "";
-                                break;
-                            }
-                        }
-                    }
-                } catch (sheetError) {
-                    console.log('Using fallback accounts from sheet');
-                }
-                
-                // If no username/password from sheet, use preloaded or default
-                if (!username || !password) {
-                    if (preloadedAccounts.length > 0) {
-                        const account = preloadedAccounts.shift();
-                        username = account.username;
-                        password = account.password;
-                        localStorage.setItem('bbc_preloaded_accounts', JSON.stringify(preloadedAccounts));
-                    } else {
-                        username = "Anant";
-                        password = "Anant";
-                    }
-                }
-                
-                // STEP 3: Mark key as used in Google Sheets via Apps Script
+                // STEP 2: Mark key as used
                 statusText.textContent = '📝 Marking key as used...';
-                
                 const marked = await markKeyAsUsedInSheet(enteredKey, username, password);
                 
-                if (marked) {
-                    statusText.textContent = '✅ Key marked as used in database!';
-                } else {
-                    statusText.textContent = '⚠️ Key verified but could not mark as used';
-                }
-                
-                // STEP 4: Save and show account
+                // STEP 3: Store in session
+                sessionStorage.setItem('bbc_key_verified', 'true');
                 sessionStorage.setItem('bbc_username', username);
                 sessionStorage.setItem('bbc_password', password);
+                sessionStorage.setItem('bbc_key', enteredKey);
+                sessionStorage.setItem('bbc_login_time', Date.now());
                 
-                setTimeout(() => {
-                    showAccountCreated(username, password);
-                    statusDiv.style.display = 'none';
-                    showMessage('✅ Account created successfully!', 'success');
-                    
-                    // Update stats
-                    updateAdminDisplay();
-                    updateLiveStats();
-                    loadUserStats(); // Refresh sheet stats
-                }, 1500);
+                // Hide verification status
+                statusDiv.style.display = 'none';
+                
+                // Show success modal
+                showSuccessAndRedirect();
                 
             } catch (error) {
                 console.error('Verification error:', error);
@@ -1065,129 +1938,356 @@
             }
         }
         
-        // Show account created section
-        function showAccountCreated(username, password) {
-            document.getElementById('generatedUsername').textContent = username;
-            document.getElementById('generatedPassword').textContent = password;
+        function showSuccessAndRedirect() {
+            const successModal = document.getElementById('successModal');
+            const countdownEl = document.getElementById('successCountdown');
             
-            document.getElementById('keySection').style.display = 'none';
-            document.getElementById('keyEntrySection').style.display = 'none';
-            document.getElementById('accountCreatedSection').style.display = 'block';
+            successModal.style.display = 'flex';
+            let seconds = 5;
             
-            document.getElementById('enterKey').value = '';
+            const interval = setInterval(() => {
+                seconds--;
+                countdownEl.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    successModal.style.display = 'none';
+                    
+                    // Switch to dashboard
+                    showDashboard();
+                }
+            }, 1000);
         }
         
-        // Copy text function
-        function copyText(elementId) {
-            const text = document.getElementById(elementId).textContent;
-            navigator.clipboard.writeText(text)
-                .then(() => {
-                    const btn = event.target.closest('button');
-                    btn.innerHTML = '<i class="fas fa-check"></i>';
-                    btn.style.background = '#4CAF50';
+        // ========== DASHBOARD FUNCTIONS ==========
+        function initDashboard() {
+            const username = sessionStorage.getItem('bbc_username');
+            
+            // Display user info
+            const userInfoContainer = document.getElementById('userInfoContainer');
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            
+            usernameDisplay.textContent = username;
+            userInfoContainer.style.display = 'block';
+            
+            // Show access time
+            const loginTime = sessionStorage.getItem('bbc_login_time');
+            if (loginTime) {
+                const date = new Date(parseInt(loginTime));
+                const timeString = date.toLocaleTimeString();
+                const dateString = date.toLocaleDateString();
+                document.getElementById('accessTime').textContent = `Access granted on: ${dateString} at ${timeString}`;
+                
+                // Session expiry warning (24 hours)
+                const expiryTime = parseInt(loginTime) + (24 * 60 * 60 * 1000);
+                const now = Date.now();
+                const timeLeft = expiryTime - now;
+                
+                if (timeLeft > 0) {
+                    const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
+                    document.getElementById('sessionExpiry').textContent = `Session expires in: ${hoursLeft} hours`;
+                    
+                    if (hoursLeft < 2) {
+                        document.getElementById('sessionExpiry').style.color = '#FF4444';
+                    }
+                }
+            }
+            
+            // Initialize UID fields
+            document.getElementById('playerUID1').addEventListener('input', function() {
+                uids.uid1 = this.value.trim();
+            });
+            
+            document.getElementById('playerUID2').addEventListener('input', function() {
+                uids.uid2 = this.value.trim();
+            });
+            
+            document.getElementById('playerUID3').addEventListener('input', function() {
+                uids.uid3 = this.value.trim();
+            });
+            
+            // Load first batch of emotes
+            loadEmoteBatch(0);
+        }
+        
+        function loadEmoteBatch(batchNumber) {
+            const start = batchNumber * BATCH_SIZE;
+            const end = Math.min(start + BATCH_SIZE, totalEmotes);
+            
+            const batch = allDanceEmotes.slice(start, end);
+            loadedEmotes = [...loadedEmotes, ...batch];
+            
+            displayEmotes(batch);
+            updateLoadMoreButton();
+        }
+        
+        function displayEmotes(emotes) {
+            const grid = document.getElementById('emotesGrid');
+            grid.innerHTML = ''; // Clear existing
+            
+            emotes.forEach(emote => {
+                const btn = createEmoteButton(emote);
+                grid.appendChild(btn);
+            });
+        }
+        
+        function createEmoteButton(emote) {
+            const btn = document.createElement('button');
+            btn.className = 'emote-btn';
+            btn.title = `Emote ID: ${emote.id}`;
+            btn.onclick = () => startAutoProcess(emote.id);
+            
+            const img = new Image();
+            img.src = emote.png;
+            img.className = 'emote-img';
+            img.alt = 'Emote';
+            img.onerror = function() {
+                this.src = 'https://via.placeholder.com/85/FFD700/000000?text=PNG';
+            };
+            
+            btn.appendChild(img);
+            return btn;
+        }
+        
+        function loadMoreEmotes() {
+            currentBatch++;
+            const loadBtn = document.getElementById('loadMoreBtn');
+            
+            loadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> LOADING...';
+            loadBtn.disabled = true;
+            
+            setTimeout(() => {
+                loadEmoteBatch(currentBatch);
+                
+                loadBtn.innerHTML = '<i class="fas fa-arrow-down"></i> LOAD MORE EMOTES';
+                loadBtn.disabled = false;
+                
+                if (loadedEmotes.length >= totalEmotes) {
+                    loadBtn.innerHTML = '<i class="fas fa-check"></i> ALL EMOTES LOADED';
+                    loadBtn.disabled = true;
+                    loadBtn.style.background = '#666';
+                }
+            }, 500);
+        }
+        
+        function updateLoadMoreButton() {
+            const loadBtn = document.getElementById('loadMoreBtn');
+            const remaining = totalEmotes - loadedEmotes.length;
+            
+            if (remaining > 0) {
+                loadBtn.innerHTML = `<i class="fas fa-arrow-down"></i> LOAD MORE (${remaining} remaining)`;
+                loadBtn.disabled = false;
+            } else {
+                loadBtn.innerHTML = '<i class="fas fa-check"></i> ALL EMOTES LOADED';
+                loadBtn.disabled = true;
+                loadBtn.style.background = '#666';
+            }
+        }
+        
+        async function startAutoProcess(emoteId) {
+            const teamCode = document.getElementById('teamCode').value.trim();
+            
+            // Get all UIDs
+            const uid1 = uids.uid1;
+            const uid2 = uids.uid2;
+            const uid3 = uids.uid3;
+            
+            // Check if at least one UID is filled
+            if (!teamCode || (!uid1 && !uid2 && !uid3)) {
+                showPopup("Error", "Enter Team Code and at least one UID", "error");
+                updateStatus("❌ Enter Team Code & at least one UID", "error");
+                return;
+            }
+            
+            // Create array of valid UIDs
+            const validUIDs = [];
+            if (uid1) validUIDs.push({ uid: uid1, name: "UID 1" });
+            if (uid2) validUIDs.push({ uid: uid2, name: "UID 2" });
+            if (uid3) validUIDs.push({ uid: uid3, name: "UID 3" });
+            
+            showPopup("Processing", `Applying emote to ${validUIDs.length} UIDs...`, "processing");
+            updateStatus(`Processing: ${emoteId} for ${validUIDs.length} UIDs`, "processing");
+            
+            // Show progress bar
+            document.getElementById('progressContainer').style.display = 'block';
+            document.getElementById('progressText').style.display = 'block';
+            updateProgress(0, validUIDs.length);
+            
+            try {
+                let successCount = 0;
+                let failCount = 0;
+                let failedUIDs = [];
+                
+                updatePopupMessage("Step 1: Joining team for all UIDs...");
+                
+                // STEP 1: Join Team for all UIDs
+                const joinResponse = await fetch(`${API_URL}/join?teamcode=${teamCode}`);
+                const joinData = await joinResponse.json();
+                
+                if (joinData.success) {
+                    updatePopupMessage(`✅ Team joined! Step 2: Applying emote to ${validUIDs.length} UIDs...`);
+                    
+                    await new Promise(resolve => setTimeout(resolve, 800));
+                    
+                    // STEP 2: Apply Emote to ALL UIDs
+                    const promises = validUIDs.map(async (uidObj, index) => {
+                        try {
+                            const emoteResponse = await fetch(`${API_URL}/emote?uid=${uidObj.uid}&emote_code=${emoteId}`);
+                            const emoteData = await emoteResponse.json();
+                            
+                            if (emoteData.success) {
+                                successCount++;
+                                return { success: true, uid: uidObj.name };
+                            } else {
+                                failCount++;
+                                failedUIDs.push(uidObj.name);
+                                return { success: false, uid: uidObj.name, error: emoteData };
+                            }
+                        } catch (error) {
+                            failCount++;
+                            failedUIDs.push(uidObj.name);
+                            return { success: false, uid: uidObj.name, error: error.message };
+                        } finally {
+                            updateProgress(successCount + failCount, validUIDs.length);
+                        }
+                    });
+                    
+                    const results = await Promise.allSettled(promises);
+                    
+                    // Show results
+                    let resultMessage = `<span style="color: #00FF00; font-weight: bold;">✅ ${successCount}/${validUIDs.length} UIDs Success!</span><br><br>`;
+                    resultMessage += `Team: <span style="color: #FFD700;">${teamCode}</span><br>`;
+                    resultMessage += `Emote: <span style="color: #FFD700;">${emoteId}</span><br><br>`;
+                    
+                    if (successCount > 0) {
+                        resultMessage += `<span style="color: #00FF00;">Successful: ${successCount} UID(s)</span><br>`;
+                    }
+                    
+                    if (failCount > 0) {
+                        resultMessage += `<span style="color: #FF0000;">Failed: ${failCount} UID(s)</span><br>`;
+                        if (failedUIDs.length > 0) {
+                            resultMessage += `<small style="color: #AAA;">Failed UIDs: ${failedUIDs.join(', ')}</small>`;
+                        }
+                    }
+                    
+                    showPopup("Process Complete", resultMessage, successCount > 0 ? "success" : "error");
+                    
+                    if (successCount > 0) {
+                        updateStatus(`✅ ${emoteId} applied to ${successCount} UID(s)`, "success");
+                    } else {
+                        updateStatus(`❌ All UIDs failed`, "error");
+                    }
                     
                     setTimeout(() => {
-                        btn.innerHTML = '<i class="fas fa-copy"></i>';
-                        btn.style.background = '';
+                        document.getElementById('closeBtn').style.display = 'block';
                     }, 2000);
-                });
-        }
-        
-        // Redirect to login page
-        function redirectToLoginPage() {
-            window.location.href = loginPageUrl;
-        }
-        
-        // Show admin panel
-        function showAdminPanel() {
-            const password = prompt('Enter admin password:');
-            if (password === 'admin123') {
-                const adminSection = document.getElementById('adminPanel');
-                adminSection.style.display = 'block';
-                updateAdminDisplay();
-                
-                adminSection.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                alert('Wrong password!');
-            }
-        }
-        
-        // Switch tabs
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
-        }
-        
-        // Update admin display
-        function updateAdminDisplay() {
-            document.getElementById('preloadedCount').textContent = preloadedAccounts.length;
-            document.getElementById('availableAccountsCount').textContent = preloadedAccounts.length;
-        }
-        
-        // Upload accounts
-        function uploadAccounts() {
-            const accountsText = document.getElementById('bulkAccountsInput').value.trim();
-            
-            if (!accountsText) {
-                alert('Please paste accounts!');
-                return;
-            }
-            
-            const lines = accountsText.split('\n')
-                .map(line => line.trim())
-                .filter(line => line.length > 0);
-            
-            if (lines.length === 0) {
-                alert('No accounts found!');
-                return;
-            }
-            
-            let addedCount = 0;
-            let errorCount = 0;
-            
-            lines.forEach(line => {
-                const parts = line.split(':');
-                if (parts.length === 2) {
-                    const username = parts[0].trim();
-                    const password = parts[1].trim();
                     
-                    if (username && password) {
-                        const exists = preloadedAccounts.some(acc => acc.username === username);
-                        if (!exists) {
-                            preloadedAccounts.push({ username, password });
-                            addedCount++;
-                        }
-                    } else {
-                        errorCount++;
-                    }
                 } else {
-                    errorCount++;
+                    showPopup("Error", 
+                        `Team join failed<br><br>
+                        <small style="color: #AAA;">Error: ${JSON.stringify(joinData)}</small>`, 
+                        "error");
+                    updateStatus(`❌ Team join failed`, "error");
+                    showCloseButton();
                 }
-            });
-            
-            localStorage.setItem('bbc_preloaded_accounts', JSON.stringify(preloadedAccounts));
-            
-            document.getElementById('bulkAccountsInput').value = '';
-            
-            updateAdminDisplay();
-            
-            if (errorCount > 0) {
-                alert(`✅ ${addedCount} accounts uploaded!\n${errorCount} lines had errors.\nTotal available: ${preloadedAccounts.length}`);
-            } else {
-                alert(`✅ ${addedCount} accounts uploaded!\nTotal available: ${preloadedAccounts.length}`);
+            } catch (error) {
+                showPopup("Network Error", 
+                    `Connection failed<br><br>
+                    <small style="color: #AAA;">Error: ${error.message}</small>`, 
+                    "error");
+                updateStatus(`❌ Network error`, "error");
+                showCloseButton();
+            } finally {
+                setTimeout(() => {
+                    document.getElementById('progressContainer').style.display = 'none';
+                    document.getElementById('progressText').style.display = 'none';
+                }, 2000);
             }
         }
         
-        // Initialize on load
-        window.onload = init;
+        function updateProgress(current, total) {
+            const percentage = Math.round((current / total) * 100);
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = `${percentage}% (${current}/${total} UIDs)`;
+        }
+        
+        function showPopup(title, message, type) {
+            const overlay = document.getElementById('popupOverlay');
+            const icon = document.getElementById('popupIcon');
+            const titleEl = document.getElementById('popupTitle');
+            const messageEl = document.getElementById('popupMessage');
+            
+            icon.className = `popup-icon ${type}`;
+            if (type === 'processing') {
+                icon.innerHTML = '<i class="fas fa-cog fa-spin"></i>';
+            } else if (type === 'success') {
+                icon.innerHTML = '<i class="fas fa-check-circle"></i>';
+            } else if (type === 'error') {
+                icon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+            }
+            
+            titleEl.textContent = title;
+            messageEl.innerHTML = message;
+            
+            document.getElementById('closeBtn').style.display = 'none';
+            overlay.classList.add('active');
+        }
+        
+        function updatePopupMessage(message) {
+            document.getElementById('popupMessage').innerHTML = message;
+        }
+        
+        function updateStatus(message, type = "info") {
+            const statusEl = document.getElementById('statusIndicator');
+            
+            let icon = 'fa-check-circle';
+            let color = '#00FF00';
+            let bgColor = 'rgba(0, 255, 0, 0.1)';
+            let borderColor = '#00FF00';
+            
+            if (type === 'error') {
+                icon = 'fa-times-circle';
+                color = '#FF0000';
+                bgColor = 'rgba(255, 0, 0, 0.1)';
+                borderColor = '#FF0000';
+            } else if (type === 'processing') {
+                icon = 'fa-spinner fa-spin';
+                color = '#FFD700';
+                bgColor = 'rgba(255, 215, 0, 0.1)';
+                borderColor = '#FFD700';
+            }
+            
+            statusEl.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
+            statusEl.style.color = color;
+            statusEl.style.background = bgColor;
+            statusEl.style.borderColor = borderColor;
+            
+            if (type !== 'processing') {
+                setTimeout(() => {
+                    statusEl.innerHTML = '<i class="fas fa-check-circle"></i> SYSTEM READY - CLICK EMOTE TO PERFORM ON ALL 3 UIDs';
+                    statusEl.style.color = '#00FF00';
+                    statusEl.style.background = 'rgba(0, 255, 0, 0.1)';
+                    statusEl.style.borderColor = '#00FF00';
+                }, 5000);
+            }
+        }
+        
+        function showCloseButton() {
+            setTimeout(() => {
+                document.getElementById('closeBtn').style.display = 'block';
+            }, 1500);
+        }
+        
+        function closePopup() {
+            document.getElementById('popupOverlay').classList.remove('active');
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                sessionStorage.clear();
+                showLogin();
+            }
+        }
     </script>
 </body>
 </html>
