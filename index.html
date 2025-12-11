@@ -4,8 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BIGBULL CHEATS - Key Verification & Emote Dashboard</title>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3637390468717908"
+     crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ========== GLOBAL STYLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+        }
+        
+        body {
+            background: #000000;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* ... rest of your CSS remains the same ... */
         /* ========== GLOBAL STYLES ========== */
         * {
             margin: 0;
@@ -2329,6 +2350,13 @@
         
         // Allow Enter key to trigger verification
         document.getElementById('enterKey').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                verifyAndAccess();
+            }
+        });
+    </script>
+</body>
+</html>ner('keypress', (e) => {
             if (e.key === 'Enter') {
                 verifyAndAccess();
             }
