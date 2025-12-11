@@ -132,14 +132,14 @@
         
         .input-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom = 8px;
             font-size: 0.9rem;
             color: #ccc;
         }
         
         .input-group input {
             width: 100%;
-            padding: 14px 15px 14px 45px;
+            padding: 14px 45px 14px 45px;
             background: rgba(40, 40, 50, 0.7);
             border: 1px solid #444;
             border-radius: 8px;
@@ -160,6 +160,23 @@
             top: 40px;
             color: #777;
             font-size: 1.1rem;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            background: none;
+            border: none;
+            color: #ffd700;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .copy-btn:hover {
+            color: #ff8c00;
+            transform: scale(1.1);
         }
         
         .generate-btn {
@@ -187,6 +204,12 @@
             border-radius: 5px;
             margin: 10px 0;
             display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .message-success {
@@ -201,6 +224,32 @@
             color: #f44336;
         }
         
+        .verification-status {
+            display: none;
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius = 5px;
+            background: rgba(40, 40, 50, 0.7);
+            animation: pulseStatus 1.5s infinite;
+        }
+        
+        @keyframes pulseStatus {
+            0%, 100% { background: rgba(40, 40, 50, 0.7); }
+            50% { background: rgba(40, 40, 50, 0.9); }
+        }
+        
+        .security-notice {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius = 8px;
+            border-left: 4px solid #ffd700;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        /* ========== USER STATS STYLES ========== */
         .user-stats {
             display: flex;
             justify-content: space-around;
@@ -216,6 +265,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             color: #ffd700;
+            transition: all 0.3s ease;
         }
         
         .stat-label {
@@ -223,14 +273,26 @@
             color: #aaa;
         }
         
-        .security-notice {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 8px;
-            border-left: 4px solid #ffd700;
-            font-size: 0.85rem;
-            text-align: center;
+        .stat-up {
+            color: #00ff00 !important;
+            animation: pulseGreen 0.5s ease;
+        }
+        
+        .stat-down {
+            color: #ff4444 !important;
+            animation: pulseRed 0.5s ease;
+        }
+        
+        @keyframes pulseGreen {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes pulseRed {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.9); }
+            100% { transform: scale(1); }
         }
         
         /* ========== MODAL STYLES ========== */
@@ -250,7 +312,7 @@
         .modal-content {
             background: rgba(25, 25, 35, 0.95);
             padding: 40px;
-            border-radius: 15px;
+            border-radius = 15px;
             text-align: center;
             max-width: 400px;
             width: 90%;
@@ -309,24 +371,17 @@
             to { transform: translateY(-10px); }
         }
         
-        .verification-status {
-            display: none;
-            text-align: center;
-            margin: 15px 0;
-            padding: 10px;
-            border-radius: 5px;
-            background: rgba(40, 40, 50, 0.7);
-        }
-        
         /* ========== DASHBOARD STYLES ========== */
         .dashboard {
             display: none;
+            background: #000000;
+            min-height: 100vh;
         }
         
         /* FIXED HEADER - Compact Design */
         .header {
             background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-            padding: 10px 20px; /* Reduced padding */
+            padding: 10px 20px;
             text-align: center;
             border-bottom: 3px solid #FFD700;
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25);
@@ -335,12 +390,12 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            height: auto; /* Auto height */
-            min-height: 60px; /* Minimum height */
+            height: auto;
+            min-height: 60px;
         }
         
         .dashboard-logo {
-            font-size: 2rem; /* Smaller font */
+            font-size: 2rem;
             font-weight: 900;
             background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
             -webkit-background-clip: text;
@@ -353,13 +408,13 @@
         
         .subtitle {
             color: #FFD700;
-            font-size: 0.9rem; /* Smaller */
+            font-size: 0.9rem;
             margin-bottom: 3px;
             font-weight: 600;
         }
         
         .user-info {
-            font-size: 0.8rem; /* Smaller */
+            font-size: 0.8rem;
             color: #00FF00;
             display: flex;
             align-items: center;
@@ -378,7 +433,7 @@
             border: 1px solid #FF0000;
             color: #FF0000;
             padding: 2px 8px;
-            border-radius: 3px;
+            border-radius = 3px;
             cursor: pointer;
             font-size: 0.7rem;
             transition: all 0.3s;
@@ -418,7 +473,7 @@
             max-width: 500px;
             margin: 0 auto;
             padding: 15px;
-            margin-top: 120px; /* Reduced space for header */
+            margin-top: 120px;
         }
         
         /* Input Section */
@@ -437,7 +492,7 @@
             gap: 12px;
         }
         
-        .input-group {
+        .input-group-dash {
             width: 100%;
         }
         
@@ -522,6 +577,7 @@
             color: #00FF00;
             font-size: 0.8rem;
             font-weight: bold;
+            transition: all 0.3s;
         }
         
         .status-bar i {
@@ -563,6 +619,7 @@
             aspect-ratio: 1/1;
             overflow: hidden;
             min-height: 100px;
+            position: relative;
         }
         
         .emote-btn:hover {
@@ -882,71 +939,6 @@
                 font-size: 0.75rem;
             }
         }
-
-        @media (max-width: 400px) {
-            .emotes-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 6px;
-            }
-            
-            .dashboard-logo {
-                font-size: 1.6rem;
-            }
-            
-            .container {
-                margin-top: 100px;
-            }
-            
-            .uid-input {
-                font-size: 0.75rem;
-                padding: 6px;
-            }
-            
-            .emote-img {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .emote-btn {
-                min-height: 80px;
-                padding: 5px;
-            }
-            
-            .subtitle {
-                font-size: 0.8rem;
-            }
-            
-            .user-info {
-                font-size: 0.7rem;
-                gap: 5px;
-            }
-        }
-        
-        @media (max-width: 320px) {
-            .emotes-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .emote-img {
-                width: 65px;
-                height: 65px;
-            }
-            
-            .uid-input-row {
-                flex-direction: column;
-                gap: 4px;
-            }
-            
-            .uid-label {
-                justify-content: flex-start;
-                min-width: auto;
-                width: 100%;
-            }
-            
-            .dashboard-logo {
-                font-size: 1.4rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -979,9 +971,12 @@
                     <label for="enterKey">ENTER YOUR KEY</label>
                     <i class="fas fa-lock input-icon"></i>
                     <input type="text" id="enterKey" placeholder="Enter key in format: BBC XXX XXX" required>
+                    <button class="copy-btn" onclick="copyKeyFromClipboard()">
+                        <i class="fas fa-paste"></i>
+                    </button>
                 </div>
                 
-                <button class="generate-btn" onclick="verifyAndGenerate()">
+                <button class="generate-btn" onclick="verifyAndAccess()">
                     <i class="fas fa-magic"></i> VERIFY KEY & ACCESS DASHBOARD
                 </button>
                 
@@ -992,17 +987,18 @@
                 </div>
             </div>
             
+            <!-- USER STATS SECTION -->
             <div class="user-stats">
                 <div class="stat">
-                    <div class="stat-number" id="totalUsers">5.1K</div>
+                    <div class="stat-number" id="totalUsers">7.0K</div>
                     <div class="stat-label">Total Users</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number" id="activeToday">600</div>
+                    <div class="stat-number" id="activeToday">1.2K</div>
                     <div class="stat-label">Active Today</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number" id="onlineNow">250</div>
+                    <div class="stat-number" id="onlineNow">428</div>
                     <div class="stat-label">Online Now</div>
                 </div>
             </div>
@@ -1020,10 +1016,10 @@
         <div class="header" id="mainHeader">
             <h1 class="dashboard-logo">BIGBULLCHEATS</h1>
             <p class="subtitle">PREMIUM EMOTE DASHBOARD</p>
-            <div id="userInfoContainer" style="display: none;">
+            <div id="userInfoContainer">
                 <div class="user-info">
                     <i class="fas fa-user"></i>
-                    Welcome, <span id="usernameDisplay" style="color: #00FF00; font-weight: bold;"></span>
+                    Welcome, <span id="usernameDisplay" style="color: #00FF00; font-weight: bold;">User</span>
                     <button onclick="logout()" class="logout-btn">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </button>
@@ -1041,7 +1037,7 @@
             <!-- Input Section -->
             <div class="input-section">
                 <div class="input-row">
-                    <div class="input-group">
+                    <div class="input-group-dash">
                         <label class="input-label">TEAM CODE</label>
                         <input type="text" 
                                id="teamCode" 
@@ -1050,7 +1046,7 @@
                                value="">
                     </div>
                     
-                    <div class="input-group">
+                    <div class="input-group-dash">
                         <label class="input-label">PLAYER UIDs - ALL 3 TOGETHER</label>
                         
                         <!-- Always visible UID inputs -->
@@ -1183,9 +1179,9 @@
 
     <script>
         // ========== GLOBAL VARIABLES ==========
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPbGzulW7AdCGapKA50kxt9Baupkju4S2SOEaGCPN2jrIy65qs3JCXowOKHjOCz5CJ/exec";
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxVqlxbN9I7CTYgyKVH25G5owxgO2-d3M5YtzXKoivSYQycOQtiYSkm6q9vzXa9PSStjg/exec';
         const API_URL = 'https://raihan-api.onrender.com';
-        let shortlinkUrl = "https://bbckeygen.onrender.com/";
+        const shortlinkUrl = "https://bbckeygen.onrender.com/";
         
         // Dashboard variables
         let allDanceEmotes = [];
@@ -1194,6 +1190,7 @@
         const BATCH_SIZE = 100;
         let loadedEmotes = [];
         let totalEmotes = 0;
+        let sessionCheckInterval = null;
         
         // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', function() {
@@ -1745,30 +1742,30 @@
             const now = new Date();
             const currentHour = now.getHours();
             
-            document.getElementById('totalUsers').textContent = '5.1K';
+            document.getElementById('totalUsers').textContent = '7.0K';
             
-            let activeToday = 600;
-            let onlineNow = 250;
+            let activeToday = 1200;
+            let onlineNow = 428;
             
             if (currentHour >= 6 && currentHour < 12) {
-                activeToday = 600 + Math.floor(Math.random() * 300);
-                onlineNow = 400 + Math.floor(Math.random() * 200);
+                activeToday = 1200 + Math.floor(Math.random() * 300);
+                onlineNow = 428 + Math.floor(Math.random() * 200);
             } else if (currentHour >= 12 && currentHour < 18) {
-                activeToday = 900 + Math.floor(Math.random() * 500);
-                onlineNow = 500 + Math.floor(Math.random() * 200);
+                activeToday = 1500 + Math.floor(Math.random() * 500);
+                onlineNow = 528 + Math.floor(Math.random() * 200);
             } else if (currentHour >= 18 && currentHour < 22) {
-                activeToday = 1400 + Math.floor(Math.random() * 500);
-                onlineNow = 600 + Math.floor(Math.random() * 100);
+                activeToday = 1900 + Math.floor(Math.random() * 500);
+                onlineNow = 628 + Math.floor(Math.random() * 100);
             } else {
-                activeToday = 120 + Math.floor(Math.random() * 80);
-                onlineNow = 120 + Math.floor(Math.random() * 80);
+                activeToday = 620 + Math.floor(Math.random() * 80);
+                onlineNow = 320 + Math.floor(Math.random() * 80);
             }
             
             activeToday += Math.floor(Math.random() * 20) - 10;
             onlineNow += Math.floor(Math.random() * 15) - 7;
             
-            activeToday = Math.max(120, activeToday);
-            onlineNow = Math.max(100, onlineNow);
+            activeToday = Math.max(620, activeToday);
+            onlineNow = Math.max(320, onlineNow);
             
             const formatNumber = (num) => {
                 if (num >= 1000) {
@@ -1783,12 +1780,24 @@
         
         function animateCounter(elementId, newValue) {
             const element = document.getElementById(elementId);
-            if (element.textContent !== newValue) {
-                element.style.color = '#ff8c00';
+            const oldValue = element.textContent;
+            
+            if (oldValue !== newValue) {
+                // Remove K from comparison
+                const oldNum = parseFloat(oldValue.replace('K', ''));
+                const newNum = parseFloat(newValue.replace('K', ''));
+                
+                if (newNum > oldNum) {
+                    element.classList.add('stat-up');
+                } else if (newNum < oldNum) {
+                    element.classList.add('stat-down');
+                }
+                
+                element.textContent = newValue;
+                
                 setTimeout(() => {
-                    element.textContent = newValue;
-                    element.style.color = '#ffd700';
-                }, 300);
+                    element.classList.remove('stat-up', 'stat-down');
+                }, 500);
             }
         }
         
@@ -1822,50 +1831,23 @@
             }, 1000);
         }
         
-        async function verifyKeyWithAppScript(key) {
+        // ========== COPY-PASTE FUNCTIONALITY ==========
+        async function copyKeyFromClipboard() {
             try {
-                const response = await fetch(`${APPS_SCRIPT_URL}?action=verifyKey&key=${encodeURIComponent(key)}&password=BULL2025`);
-                
-                if (!response.ok) {
-                    return {
-                        success: false,
-                        error: 'Server connection failed'
-                    };
+                const text = await navigator.clipboard.readText();
+                if (text) {
+                    const enterKeyInput = document.getElementById('enterKey');
+                    enterKeyInput.value = text.toUpperCase().trim();
+                    showMessage('Key pasted from clipboard!', 'success');
                 }
-                
-                const data = await response.json();
-                console.log('Apps Script Response:', data);
-                return data;
-            } catch (error) {
-                console.error('Apps Script Error:', error);
-                return {
-                    success: false,
-                    error: 'Verification failed. Please try again.'
-                };
+            } catch (err) {
+                console.error('Failed to read clipboard:', err);
+                showMessage('Failed to paste from clipboard. Please paste manually.', 'error');
             }
         }
         
-        async function markKeyAsUsedInSheet(key, username, password) {
-            try {
-                console.log('Marking key as used:', key);
-                
-                const response = await fetch(`${APPS_SCRIPT_URL}?action=markUsed&key=${encodeURIComponent(key)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&adminPass=BULL2025`);
-                
-                if (!response.ok) {
-                    console.error('Failed to mark key as used');
-                    return false;
-                }
-                
-                const data = await response.json();
-                console.log('Mark used response:', data);
-                return data.success === true;
-            } catch (error) {
-                console.error('Error marking key as used:', error);
-                return false;
-            }
-        }
-        
-        async function verifyAndGenerate() {
+        // ========== KEY VERIFICATION ==========
+        async function verifyAndAccess() {
             const enteredKey = document.getElementById('enterKey').value.trim().toUpperCase();
             
             if (!enteredKey) {
@@ -1873,6 +1855,7 @@
                 return;
             }
             
+            // Key format validation
             if (!/^BBC\s+[A-Z]{3}\s+[0-9]{3}$/.test(enteredKey)) {
                 showMessage('Invalid format! Use: BBC XXX XXX', 'error');
                 return;
@@ -1881,69 +1864,102 @@
             const statusDiv = document.getElementById('verificationStatus');
             const statusText = document.getElementById('statusText');
             statusDiv.style.display = 'block';
-            statusText.textContent = '🔐 Checking key in database...';
+            statusText.textContent = '🔐 Checking key status...';
             statusText.style.color = '#ffd700';
             
             try {
-                // STEP 1: Verify with Apps Script
-                statusText.textContent = '📡 Connecting to verification server...';
+                // STEP 1: Check key status with new API
+                statusText.textContent = '📡 Checking key status...';
                 
-                const scriptResult = await verifyKeyWithAppScript(enteredKey);
+                const checkResponse = await fetch(`${APPS_SCRIPT_URL}?action=checkKey&key=${encodeURIComponent(enteredKey)}`);
                 
-                if (!scriptResult.success) {
-                    statusText.textContent = `❌ ${scriptResult.error || 'Key verification failed'}`;
+                if (!checkResponse.ok) {
+                    throw new Error('Failed to check key status');
+                }
+                
+                const checkData = await checkResponse.json();
+                
+                if (!checkData.success) {
+                    statusText.textContent = `❌ ${checkData.error || 'Key not found'}`;
                     statusText.style.color = '#ff4444';
-                    
-                    setTimeout(() => {
-                        statusDiv.style.display = 'none';
-                        showMessage(scriptResult.error || 'Key verification failed', 'error');
-                    }, 2000);
+                    showMessage(checkData.error || 'Key not found in database', 'error');
+                    setTimeout(() => statusDiv.style.display = 'none', 2000);
                     return;
                 }
                 
-                // Key verified successfully
-                statusText.textContent = '✅ Key verified successfully!';
-                statusText.style.color = '#4CAF50';
+                const keyStatus = checkData.status ? String(checkData.status).toLowerCase().trim() : '';
                 
-                // Get username and password from response
-                let username = scriptResult.username || "User";
-                let password = scriptResult.password || "Pass";
+                // ✅ UPDATED LOGIC: Only allow GENERATED keys
+                if (keyStatus === 'generated') {
+                    statusText.textContent = '✅ Key is GENERATED! Access granted...';
+                    statusText.style.color = '#4CAF50';
+                    
+                    // STEP 2: Mark key as USED with new API
+                    const markResponse = await fetch(`${APPS_SCRIPT_URL}?action=markKeyAsUsed&key=${encodeURIComponent(enteredKey)}&username=${encodeURIComponent("Dashboard User")}&password=NEXT2026`);
+                    
+                    if (markResponse.ok) {
+                        const markData = await markResponse.json();
+                        
+                        if (markData.success) {
+                            // Store session data
+                            sessionStorage.setItem('bbc_key_verified', 'true');
+                            sessionStorage.setItem('bbc_key', enteredKey);
+                            sessionStorage.setItem('bbc_username', 'Dashboard User');
+                            sessionStorage.setItem('bbc_key_status', 'used');
+                            sessionStorage.setItem('bbc_login_time', Date.now());
+                            
+                            // Hide verification status
+                            statusDiv.style.display = 'none';
+                            
+                            // Show success modal and open dashboard
+                            showSuccessAndOpenDashboard();
+                        } else {
+                            statusText.textContent = `⚠️ ${markData.error || 'Failed to update key status'}`;
+                            statusText.style.color = '#ff9800';
+                            showMessage('Failed to update key status', 'warning');
+                        }
+                    } else {
+                        throw new Error('Failed to mark key as used');
+                    }
+                    
+                } else if (keyStatus === 'unverified') {
+                    statusText.textContent = '❌ Key is UNVERIFIED. Please verify first!';
+                    statusText.style.color = '#ff4444';
+                    showMessage('This key needs verification first. Please use the verification page.', 'error');
+                    
+                } else if (keyStatus === 'available') {
+                    statusText.textContent = '❌ Key is AVAILABLE but not generated';
+                    statusText.style.color = '#ff4444';
+                    showMessage('Key needs to be generated first', 'error');
+                    
+                } else if (keyStatus === 'used') {
+                    statusText.textContent = '❌ Key is already USED';
+                    statusText.style.color = '#ff4444';
+                    showMessage('This key has already been used', 'error');
+                    
+                } else {
+                    statusText.textContent = `❌ Invalid key status: ${keyStatus}`;
+                    statusText.style.color = '#ff4444';
+                    showMessage(`Invalid key status: ${keyStatus}`, 'error');
+                }
                 
-                // STEP 2: Mark key as used
-                statusText.textContent = '📝 Marking key as used...';
-                const marked = await markKeyAsUsedInSheet(enteredKey, username, password);
-                
-                // STEP 3: Store in session
-                sessionStorage.setItem('bbc_key_verified', 'true');
-                sessionStorage.setItem('bbc_username', username);
-                sessionStorage.setItem('bbc_password', password);
-                sessionStorage.setItem('bbc_key', enteredKey);
-                sessionStorage.setItem('bbc_login_time', Date.now());
-                
-                // Hide verification status
-                statusDiv.style.display = 'none';
-                
-                // Show success modal
-                showSuccessAndRedirect();
+                setTimeout(() => statusDiv.style.display = 'none', 3000);
                 
             } catch (error) {
                 console.error('Verification error:', error);
-                statusText.textContent = '⚠️ Verification error';
-                statusText.style.color = '#ff9800';
-                
-                setTimeout(() => {
-                    statusDiv.style.display = 'none';
-                    showMessage('Verification system error. Please try again.', 'warning');
-                }, 2000);
+                statusText.textContent = '❌ Verification error';
+                statusText.style.color = '#ff4444';
+                showMessage('Verification system error. Please try again.', 'error');
+                setTimeout(() => statusDiv.style.display = 'none', 2000);
             }
         }
         
-        function showSuccessAndRedirect() {
+        function showSuccessAndOpenDashboard() {
             const successModal = document.getElementById('successModal');
             const countdownEl = document.getElementById('successCountdown');
             
             successModal.style.display = 'flex';
-            let seconds = 5;
+            let seconds = 3;
             
             const interval = setInterval(() => {
                 seconds--;
@@ -1953,7 +1969,7 @@
                     clearInterval(interval);
                     successModal.style.display = 'none';
                     
-                    // Switch to dashboard
+                    // Open dashboard
                     showDashboard();
                 }
             }, 1000);
@@ -1962,12 +1978,13 @@
         // ========== DASHBOARD FUNCTIONS ==========
         function initDashboard() {
             const username = sessionStorage.getItem('bbc_username');
+            const key = sessionStorage.getItem('bbc_key');
             
             // Display user info
             const userInfoContainer = document.getElementById('userInfoContainer');
             const usernameDisplay = document.getElementById('usernameDisplay');
             
-            usernameDisplay.textContent = username;
+            usernameDisplay.textContent = username || key || "User";
             userInfoContainer.style.display = 'block';
             
             // Show access time
@@ -2023,7 +2040,6 @@
         
         function displayEmotes(emotes) {
             const grid = document.getElementById('emotesGrid');
-            grid.innerHTML = ''; // Clear existing
             
             emotes.forEach(emote => {
                 const btn = createEmoteButton(emote);
@@ -2042,7 +2058,9 @@
             img.className = 'emote-img';
             img.alt = 'Emote';
             img.onerror = function() {
+                // If image fails to load, show placeholder
                 this.src = 'https://via.placeholder.com/85/FFD700/000000?text=PNG';
+                console.log(`Failed to load emote: ${emote.id}, URL: ${emote.png}`);
             };
             
             btn.appendChild(img);
@@ -2084,6 +2102,28 @@
             }
         }
         
+        // ========== API ERROR HANDLING ==========
+        async function handleApiRequest(url, options = {}) {
+            try {
+                const response = await fetch(url, options);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                return data;
+            } catch (error) {
+                console.error('API Request failed:', error);
+                throw error;
+            }
+        }
+        
         async function startAutoProcess(emoteId) {
             const teamCode = document.getElementById('teamCode').value.trim();
             
@@ -2120,72 +2160,70 @@
                 
                 updatePopupMessage("Step 1: Joining team for all UIDs...");
                 
-                // STEP 1: Join Team for all UIDs
-                const joinResponse = await fetch(`${API_URL}/join?teamcode=${teamCode}`);
-                const joinData = await joinResponse.json();
-                
-                if (joinData.success) {
-                    updatePopupMessage(`✅ Team joined! Step 2: Applying emote to ${validUIDs.length} UIDs...`);
+                // STEP 1: Join Team for all UIDs with better error handling
+                try {
+                    const joinData = await handleApiRequest(`${API_URL}/join?teamcode=${teamCode}`);
                     
-                    await new Promise(resolve => setTimeout(resolve, 800));
-                    
-                    // STEP 2: Apply Emote to ALL UIDs
-                    const promises = validUIDs.map(async (uidObj, index) => {
-                        try {
-                            const emoteResponse = await fetch(`${API_URL}/emote?uid=${uidObj.uid}&emote_code=${emoteId}`);
-                            const emoteData = await emoteResponse.json();
-                            
-                            if (emoteData.success) {
-                                successCount++;
-                                return { success: true, uid: uidObj.name };
-                            } else {
+                    if (joinData.success) {
+                        updatePopupMessage(`✅ Team joined! Step 2: Applying emote to ${validUIDs.length} UIDs...`);
+                        
+                        await new Promise(resolve => setTimeout(resolve, 800));
+                        
+                        // STEP 2: Apply Emote to ALL UIDs
+                        for (let i = 0; i < validUIDs.length; i++) {
+                            const uidObj = validUIDs[i];
+                            try {
+                                const emoteData = await handleApiRequest(`${API_URL}/emote?uid=${uidObj.uid}&emote_code=${emoteId}`);
+                                
+                                if (emoteData.success) {
+                                    successCount++;
+                                } else {
+                                    failCount++;
+                                    failedUIDs.push(uidObj.name);
+                                }
+                            } catch (error) {
                                 failCount++;
-                                failedUIDs.push(uidObj.name);
-                                return { success: false, uid: uidObj.name, error: emoteData };
+                                failedUIDs.push(`${uidObj.name} (${error.message})`);
                             }
-                        } catch (error) {
-                            failCount++;
-                            failedUIDs.push(uidObj.name);
-                            return { success: false, uid: uidObj.name, error: error.message };
-                        } finally {
+                            
                             updateProgress(successCount + failCount, validUIDs.length);
                         }
-                    });
-                    
-                    const results = await Promise.allSettled(promises);
-                    
-                    // Show results
-                    let resultMessage = `<span style="color: #00FF00; font-weight: bold;">✅ ${successCount}/${validUIDs.length} UIDs Success!</span><br><br>`;
-                    resultMessage += `Team: <span style="color: #FFD700;">${teamCode}</span><br>`;
-                    resultMessage += `Emote: <span style="color: #FFD700;">${emoteId}</span><br><br>`;
-                    
-                    if (successCount > 0) {
-                        resultMessage += `<span style="color: #00FF00;">Successful: ${successCount} UID(s)</span><br>`;
-                    }
-                    
-                    if (failCount > 0) {
-                        resultMessage += `<span style="color: #FF0000;">Failed: ${failCount} UID(s)</span><br>`;
-                        if (failedUIDs.length > 0) {
-                            resultMessage += `<small style="color: #AAA;">Failed UIDs: ${failedUIDs.join(', ')}</small>`;
+                        
+                        // Show results
+                        let resultMessage = `<span style="color: #00FF00; font-weight: bold;">✅ ${successCount}/${validUIDs.length} UIDs Success!</span><br><br>`;
+                        resultMessage += `Team: <span style="color: #FFD700;">${teamCode}</span><br>`;
+                        resultMessage += `Emote: <span style="color: #FFD700;">${emoteId}</span><br><br>`;
+                        
+                        if (successCount > 0) {
+                            resultMessage += `<span style="color: #00FF00;">Successful: ${successCount} UID(s)</span><br>`;
                         }
-                    }
-                    
-                    showPopup("Process Complete", resultMessage, successCount > 0 ? "success" : "error");
-                    
-                    if (successCount > 0) {
-                        updateStatus(`✅ ${emoteId} applied to ${successCount} UID(s)`, "success");
+                        
+                        if (failCount > 0) {
+                            resultMessage += `<span style="color: #FF0000;">Failed: ${failCount} UID(s)</span><br>`;
+                            if (failedUIDs.length > 0) {
+                                resultMessage += `<small style="color: #AAA;">Failed UIDs: ${failedUIDs.join(', ')}</small>`;
+                            }
+                        }
+                        
+                        showPopup("Process Complete", resultMessage, successCount > 0 ? "success" : "error");
+                        
+                        if (successCount > 0) {
+                            updateStatus(`✅ ${emoteId} applied to ${successCount} UID(s)`, "success");
+                        } else {
+                            updateStatus(`❌ All UIDs failed`, "error");
+                        }
+                        
+                        setTimeout(() => {
+                            document.getElementById('closeBtn').style.display = 'block';
+                        }, 2000);
+                        
                     } else {
-                        updateStatus(`❌ All UIDs failed`, "error");
+                        throw new Error('Team join failed');
                     }
-                    
-                    setTimeout(() => {
-                        document.getElementById('closeBtn').style.display = 'block';
-                    }, 2000);
-                    
-                } else {
+                } catch (error) {
                     showPopup("Error", 
                         `Team join failed<br><br>
-                        <small style="color: #AAA;">Error: ${JSON.stringify(joinData)}</small>`, 
+                        <small style="color: #AAA;">Error: ${error.message}</small>`, 
                         "error");
                     updateStatus(`❌ Team join failed`, "error");
                     showCloseButton();
@@ -2288,6 +2326,13 @@
                 showLogin();
             }
         }
+        
+        // Allow Enter key to trigger verification
+        document.getElementById('enterKey').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                verifyAndAccess();
+            }
+        });
     </script>
 </body>
 </html>
